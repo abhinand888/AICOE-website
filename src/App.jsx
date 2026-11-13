@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import './App.css'
 import SiteNav from './SiteNav'
+import PageHeader from './PageHeader'
+import SiteFooter from './SiteFooter'
 import { Link } from 'react-router-dom'
 import Table from 'react-bootstrap/Table';
 import { DataGrid } from '@mui/x-data-grid';
@@ -151,17 +153,7 @@ function App() {
     
     <SiteNav />
 
-    <div className="middle">
-      <img src={hero} className='hero-img' alt="" />
-      
-      
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-
-          <h2 style={{ marginTop: 20, width:'90vw', paddingLeft:'8vw' }}>Crop Yield Prediction</h2>
-          <Button as={Link} to='/' style={{ height: '2.3rem', width: '5rem' }}>Back</Button>
-          
-        </div>
+    <PageHeader title='Crop Yield Prediction' subtitle='District-level yield prediction from Landsat-8 satellite imagery.' />
       <div className='dropdown-container'>
       <FormControl sx={{ m: 1, width: 400 }}>
         <InputLabel>Crop Name</InputLabel>
@@ -278,7 +270,7 @@ function App() {
           value={distName}
           onChange={handleChange}
           input={<OutlinedInput label="District Name" />}
-          renderValue={(selected) => selected.join(', ')}
+          renderValue={(selected) => `${selected.length} district${selected.length === 1 ? '' : 's'} selected`}
           MenuProps={{
             MenuListProps: {
               sx: {
@@ -312,7 +304,7 @@ function App() {
           value={distName}
           onChange={handleChange}
           input={<OutlinedInput label="District Name" />}
-          renderValue={(selected) => selected.join(', ')}
+          renderValue={(selected) => `${selected.length} district${selected.length === 1 ? '' : 's'} selected`}
           MenuProps={{
             MenuListProps: {
               sx: {
@@ -438,7 +430,7 @@ function App() {
         
       </tbody>
     </Table></>:<></>}
-    {adv?<>{comp==="high"?<div className='middle' style={{padding:10, fontSize:20, textAlign:'left'
+    {adv?<>{comp==="high"?<div className='middle advisory' style={{padding:10, fontSize:20, textAlign:'left'
     }}><h1>ADVISORY</h1><h3>Higher Yield prediction</h3>
 <b>Expected Conditions:</b> <br /> Our model indicates a higher-than-average yield for your crops this
 season. This could be due to favorable weather conditions, improved farming practices, or
@@ -452,7 +444,7 @@ prevent post-harvest losses. Ensure your storage facilities are clean, dry, and 
 packaging, to increase your returns from the higher yield. <br />
 </div></div>:<></>}</>:<></> }
   
-{adv?<>{comp==="low"?<div className='middle' style={{padding:10, fontSize:20, textAlign:'left'
+{adv?<>{comp==="low"?<div className='middle advisory' style={{padding:10, fontSize:20, textAlign:'left'
     }}><h1>ADVISORY</h1><h3>Lower Yield Prediction</h3>
 <b>Expected Conditions:</b> <br /> Our model has predicted a lower-than-average yield this season,
 possibly due to adverse weather conditions, pest infestations, or other factors. <br />
@@ -466,11 +458,7 @@ investment. <br />
 ● Efficient Use of Resources: Focus on optimizing the use of water, fertilizers, and
 pesticides to reduce waste and improve efficiency.
 </div></div>:<></>}</>:<></> }
-<div className='footer'>
-      <div className='ftext' >
-        <p>© 2024 BITS Pilani</p>
-      </div>
-    </div>
+<SiteFooter />
     </>
   )
 }

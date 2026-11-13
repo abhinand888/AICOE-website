@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 import './Home.css'
 import SiteNav from './SiteNav'
+import SiteFooter from './SiteFooter'
 import hero from './assets/ai_image.png'
 import overview from './assets/Project OverviewOne-Pager Professional Docs Banner in Black White Sleek Monochrome Style.png'
 
@@ -14,7 +15,6 @@ const remote = {
   farm: BITS + 'farmlevel-1.jpg',
   segmentation: BITS + 'crop-segmentation-1.jpg',
   classification: BITS + 'crop-classification-1.jpg',
-  consortium: BITS + 'Pictures.jpg',
 }
 
 const applications = [
@@ -83,6 +83,14 @@ const applications = [
   },
 ]
 
+// Consortium members named in the related-projects list.
+const partners = [
+  { name: 'BITS Pilani', note: 'Lead institution' },
+  { name: 'Iowa State University (ISU)', note: 'AIIRA & COALESCE (NSF)' },
+  { name: 'IIIT Hyderabad', note: 'eSAGU · Crop Darpan' },
+  { name: 'IFFCO-KISAN', note: 'Krishi Dev Gyan (KDG)' },
+]
+
 const relatedProjects = [
   'BITS Pilani: AI-intervened tribal development for water conservation, livelihood, and health (Ministry of Tribal Affairs)',
   'BITS Pilani: Sensor data augmentation for large-scale agronomic semantic segmentation of farmland (DST-SERB)',
@@ -92,13 +100,6 @@ const relatedProjects = [
   'IFFCO-KISAN: Krishi Dev Gyan (KDG)',
 ]
 
-const social = [
-  { name: 'YouTube', href: 'https://www.youtube.com/user/BITSpilaniTechMedia/videos' },
-  { name: 'LinkedIn', href: 'https://in.linkedin.com/school/birla-institute-of-technology-and-science-pilani/' },
-  { name: 'Instagram', href: 'https://www.instagram.com/bitspilaniofficial/' },
-  { name: 'X / Twitter', href: 'https://twitter.com/bitspilaniindia' },
-  { name: 'Facebook', href: 'https://www.facebook.com/universitybitspilani/' },
-]
 
 function Icon({ d }) {
   return (
@@ -157,8 +158,15 @@ export default function Home() {
 
       <section id='consortium' className='home-section'>
         <h2 className='section-title'>Consortium</h2>
-        <img className='consortium-img' src={remote.consortium} alt='AICoE consortium partners'
-          loading='lazy' onError={hideOnError} />
+        {/* Shown until the consortium picture is saved into src/assets. */}
+        <div className='partner-chips'>
+          {partners.map((p) => (
+            <div key={p.name} className='partner-chip'>
+              <strong>{p.name}</strong>
+              <small>{p.note}</small>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section id='related-projects' className='home-section'>
@@ -169,34 +177,7 @@ export default function Home() {
         </ol>
       </section>
 
-      <footer id='contact' className='home-footer'>
-        <div className='footer-cols'>
-          <div>
-            <h4>AICoE</h4>
-            <p>Ensuring Food Security through AI &amp; Satellite Imaging Technology Assisted Robust Agriculture at Scale.</p>
-            <div className='social'>
-              {social.map((s) => (
-                <a key={s.name} href={s.href} target='_blank' rel='noreferrer'>{s.name}</a>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h4>BITS Pilani Campus</h4>
-            <p>Birla Institute of Technology &amp; Science, Pilani<br />Pilani Campus<br />
-              Vidya Vihar, Pilani<br />Rajasthan - 333031, India</p>
-          </div>
-          <div>
-            <h4>Contact</h4>
-            <p><strong>Chief Project Manager:</strong> Prof. Navneet Goyal<br />
-              <strong>Project Manager:</strong> Prof. Poonam Goyal<br />
-              Department of Computer Science,<br />BITS Pilani, Pilani Campus</p>
-          </div>
-        </div>
-        <div className='footer-bottom'>
-          <p>An Institution Deemed to be University estd. vide Sec.3 of the UGC Act,1956 under notification # F.12-23/63.U-2 of Jun 18,1964</p>
-          <p>© {new Date().getFullYear()} BITS Pilani</p>
-        </div>
-      </footer>
+      <SiteFooter id='contact' />
     </div>
   )
 }

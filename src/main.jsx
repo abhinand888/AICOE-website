@@ -4,11 +4,11 @@ import App from './App.jsx'
 import Variability_prediction from './variability_prediction.jsx'
 import Early_prediction from './early_prediction.jsx'
 import NextCropCycle from './ncc.jsx'
-import './index.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import CYP_with_crop from './cyp.jsx'
 import Home from './Home.jsx'
 import AppPage from './AppPage.jsx'
+import './index.css' // site theme: keep this last so it applies on top
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

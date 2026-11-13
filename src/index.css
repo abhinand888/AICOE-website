@@ -1,1 +1,340 @@
+/* ==========================================================================
+   AICoE site theme: same navy + white palette, applied consistently.
+   Loaded last (see main.jsx), so it refines Bootstrap/MUI and App.css.
+   ========================================================================== */
+:root {
+  --navy: #1A165A;
+  --navy-2: #2a2580;
+  --navy-3: #3b35a8;
+  --ink: #1d1d2b;
+  --muted: #5b5b70;
+  --line: #e4e4ee;
+  --tint: #f5f5fb;
+  --page: #f7f7fb;
+  --radius: 16px;
+  --shadow: 0 1px 2px rgba(26, 22, 90, 0.06), 0 8px 24px rgba(26, 22, 90, 0.08);
+}
 
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--ink);
+  background: var(--page);
+  -webkit-font-smoothing: antialiased;
+}
+#root { overflow-x: hidden; }
+
+/* ---------- Top navigation ---------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  min-height: 0 !important;
+  height: auto !important;
+  width: 100%;
+  padding: 0.6rem 0;
+  box-shadow: 0 2px 12px rgba(10, 8, 40, 0.25);
+}
+.navbar .navbar-brand img { height: 56px; width: auto; }
+.navbar .dropdown-menu {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 0.4rem;
+  background: #fff;
+}
+.navbar .dropdown-item {
+  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  color: var(--ink);
+  font-weight: 500;
+}
+.navbar .dropdown-item:hover { background: var(--tint); color: var(--navy); }
+.navbar .dropdown-item.active { background: var(--navy); color: #fff; }
+
+/* ---------- Home hero banner ---------- */
+.home .middle {
+  max-width: 1200px;
+  margin: 1.5rem auto 0;
+  padding: 0;
+  box-shadow: none;
+  background: transparent;
+}
+.home .hero-img {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.home-mission { margin-top: 2.25rem; }
+.app-card { box-shadow: 0 1px 2px rgba(26, 22, 90, 0.05); }
+
+/* ---------- Tool page header ---------- */
+.page-header {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(120deg, var(--navy) 0%, var(--navy-2) 60%, var(--navy-3) 100%);
+  color: #fff;
+  text-align: left;
+}
+.page-header-art {
+  position: absolute;
+  inset: 0 0 0 50%;
+  background-size: 190% auto;
+  background-position: right 55%;
+  opacity: 0.28;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 45%);
+  mask-image: linear-gradient(to right, transparent, #000 45%);
+}
+.page-header-inner {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem 2.25rem;
+}
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.9rem;
+}
+.crumbs a { color: rgba(255, 255, 255, 0.85); text-decoration: none; }
+.crumbs a:hover { color: #fff; text-decoration: underline; }
+.crumbs [aria-current] { color: #fff; font-weight: 600; }
+.page-header-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.page-header h1 {
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+  letter-spacing: -0.01em;
+}
+.page-header p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 60ch;
+}
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+.btn-back:hover { background: rgba(255, 255, 255, 0.14); color: #fff; }
+
+/* ---------- Buttons ---------- */
+.btn-primary,
+.btn.search {
+  --bs-btn-bg: var(--navy);
+  --bs-btn-border-color: var(--navy);
+  --bs-btn-hover-bg: var(--navy-3);
+  --bs-btn-hover-border-color: var(--navy-3);
+  --bs-btn-active-bg: var(--navy-2);
+  --bs-btn-active-border-color: var(--navy-2);
+  --bs-btn-focus-shadow-rgb: 59, 53, 168;
+  --bs-btn-disabled-bg: var(--navy);
+  --bs-btn-disabled-border-color: var(--navy);
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 0.6rem 1.15rem;
+}
+.btn.search { margin: 0.4rem; }
+
+/* ---------- Tool layout ---------- */
+.dropdown-container {
+  max-width: 1150px;
+  margin: 2rem auto 0;
+  padding: 0 1.5rem;
+}
+.dropdown-container > .MuiFormControl-root:first-child {
+  background: #fff;
+  border-radius: 12px;
+}
+.MuiOutlinedInput-root { background: #fff; border-radius: 12px !important; }
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--navy-2) !important;
+}
+.MuiInputLabel-root.Mui-focused { color: var(--navy-2) !important; }
+.MuiCheckbox-root.Mui-checked { color: var(--navy-2) !important; }
+
+/* Data & Model card */
+.wheat-data {
+  width: 100% !important;
+  max-width: 1100px;
+  margin: 1.5rem auto 1.5rem !important;
+  padding: 1.75rem !important;
+  gap: 2rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow) !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+}
+.metadata { flex: 1 1 380px; }
+.metadata h1 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 1rem;
+}
+.metadata .table {
+  --bs-table-striped-bg: transparent;
+  --bs-table-hover-bg: var(--tint);
+  margin: 0;
+  border-color: var(--line);
+}
+.metadata .table td {
+  padding: 0.6rem 0.75rem;
+  border-width: 0 0 1px 0;
+  border-color: var(--line);
+}
+.metadata .table td:first-child { color: var(--muted); width: 50%; }
+.metadata .table td:last-child { font-weight: 600; color: var(--ink); }
+.Map {
+  flex: 1 1 420px;
+  width: auto !important;
+  min-height: 420px;
+  margin-left: 0 !important;
+  border: 0;
+  border-radius: 12px;
+}
+
+/* District picker + actions */
+.dropdown-2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* Results table */
+.sec-2 {
+  width: auto !important;
+  max-width: 1150px;
+  margin: 2rem auto !important;
+  padding: 0 1.5rem;
+}
+.MuiDataGrid-root {
+  background: #fff;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow);
+  font-family: inherit !important;
+  --DataGrid-containerBackground: var(--tint);
+}
+.MuiDataGrid-columnHeaderTitle { font-weight: 700 !important; color: var(--navy); }
+.MuiDataGrid-row:hover { background: var(--tint) !important; }
+
+/* Model performance + yield history */
+.sec-3 h1,
+.sec-3 + .btn + h5 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.Model-perf {
+  gap: 1rem;
+  padding: 0 1.5rem;
+  width: auto !important;
+  max-width: 1200px;
+  margin: 1rem auto 0 !important;
+}
+.Model-perf img {
+  max-width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+.table3 {
+  width: auto !important;
+  max-width: 900px;
+  margin: 1.5rem auto 2rem !important;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  --bs-table-striped-bg: var(--tint);
+}
+.table3 thead th { background: var(--navy); color: #fff; font-weight: 600; }
+.table3 tbody tr { cursor: pointer; }
+.table3 tbody tr:hover td { background: #ecebfa; }
+
+/* Advisory panels */
+.advisory {
+  max-width: 900px !important;
+  margin: 1rem auto 2rem !important;
+  padding: 1.75rem 2rem !important;
+  font-size: 1rem !important;
+  line-height: 1.65;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--navy-2);
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow) !important;
+}
+.advisory h1 { font-size: 1.15rem; font-weight: 700; color: var(--navy); letter-spacing: 0.06em; }
+.advisory h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+
+/* Loading spinner in theme colours */
+.loader { border-color: var(--line) !important; border-top-color: var(--navy) !important; }
+
+/* Simple application pages */
+.app-page { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 2rem !important; }
+
+/* Shared footer spacing */
+.home-footer { margin-top: 4rem; }
+
+@media (max-width: 900px) {
+  .wheat-data { flex-direction: column-reverse !important; }
+  .Map { width: 100% !important; min-height: 360px; }
+  .Model-perf img { width: 100% !important; }
+  .page-header-art { inset: 0; opacity: 0.15; }
+}
+
+/* Consortium partners */
+.partner-chips {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.partner-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--navy-2);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+.partner-chip strong { color: var(--navy); font-size: 1.05rem; }
+.partner-chip small { color: var(--muted); }

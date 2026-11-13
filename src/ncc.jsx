@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import './App.css'
 import SiteNav from './SiteNav'
+import PageHeader from './PageHeader'
+import SiteFooter from './SiteFooter'
 import { Link } from 'react-router-dom'
 import Table from 'react-bootstrap/Table';
 import { DataGrid } from '@mui/x-data-grid';
@@ -137,16 +139,7 @@ function NextCropCycle() {
     
     <SiteNav />
 
-    <div className="middle">
-      <img src={hero} className='hero-img' alt="" />
-      
-      
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-
-          <h2 style={{ marginTop: 20, width:'90vw', paddingLeft:'8vw' }}>Next Crop Cycle Prediction </h2>
-          <Button as={Link} to='/' style={{ height: '2.3rem', width: '5rem' }}>Back</Button>
-        </div>
+    <PageHeader title='Next Crop Cycle Prediction' subtitle='Next season’s yield, with district-wise advisories.' />
       <div className='dropdown-container'>
       <FormControl sx={{ m: 1, width: 400 }}>
         <InputLabel>Crop Name</InputLabel>
@@ -260,7 +253,7 @@ function NextCropCycle() {
           value={distName}
           onChange={handleChange}
           input={<OutlinedInput label="District Name" />}
-          renderValue={(selected) => selected.join(', ')}
+          renderValue={(selected) => `${selected.length} district${selected.length === 1 ? '' : 's'} selected`}
           MenuProps={{
             MenuListProps: {
               sx: {
@@ -294,7 +287,7 @@ function NextCropCycle() {
           value={distName}
           onChange={handleChange}
           input={<OutlinedInput label="District Name" />}
-          renderValue={(selected) => selected.join(', ')}
+          renderValue={(selected) => `${selected.length} district${selected.length === 1 ? '' : 's'} selected`}
           MenuProps={{
             MenuListProps: {
               sx: {
@@ -420,7 +413,7 @@ function NextCropCycle() {
         
       </tbody>
     </Table></>:<></>}
-    {adv?<>{comp==="high"?<div className='middle' style={{padding:10, fontSize:20, textAlign:'left'
+    {adv?<>{comp==="high"?<div className='middle advisory' style={{padding:10, fontSize:20, textAlign:'left'
     }}><h1>ADVISORY</h1>
 <b>Exciting News: High Yield Predicted!</b> <br /> 
 Our model is forecasting a bumper harvest this season! We recommend ramping up
@@ -429,7 +422,7 @@ think ahead about storage solutions and market strategies. This season could be 
 record books, so gear up, stay informed, and make the most of this promising outlook! <br />
 </div>:<></>}</>:<></> }
   
-{adv?<>{comp==="low"?<div className='middle' style={{padding:10, fontSize:20, textAlign:'left'
+{adv?<>{comp==="low"?<div className='middle advisory' style={{padding:10, fontSize:20, textAlign:'left'
     }}><h1>ADVISORY</h1>
 <b>Urgent Advisory: Anticipated Low Yield This Season</b> <br />
 Unfortunately, our model forecasts a lower-than-average yield for the upcoming season. To
@@ -438,11 +431,7 @@ carefully managing resources, and optimizing expenses. While this season may be 
 proactive planning and smart decisions can help mitigate the impact and ensure your farm&#39;s
 resilience.<br />
 </div>:<></>}</>:<></> }
-<div className='footer'>
-      <div className='ftext' >
-        <p>© 2024 BITS Pilani</p>
-      </div>
-    </div>
+<SiteFooter />
     </>
   )
 }
