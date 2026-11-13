@@ -7,6 +7,14 @@ import SiteNav from './SiteNav'
 import SiteFooter from './SiteFooter'
 import hero from './assets/ai_image.png'
 import consortium from './assets/consortium.webp'
+import img_crop_yield from './assets/apps/crop_yield.webp'
+import img_early from './assets/apps/early.webp'
+import img_next_cycle from './assets/apps/next_cycle.webp'
+import img_variability from './assets/apps/variability.webp'
+import img_crop_model from './assets/apps/crop_model.webp'
+import img_farm_level from './assets/apps/farm_level.webp'
+import img_segmentation from './assets/apps/segmentation.webp'
+import img_classification from './assets/apps/classification.webp'
 import overview from './assets/smart_agriculture_india.webp'
 
 // Images that live on the BITS Pilani website. To host them yourself, put the
@@ -21,66 +29,66 @@ const remote = {
 const applications = [
   {
     to: '/crop_yield_prediction',
+    img: img_crop_yield,
+    label: '01 / PREDICTION',
     title: 'Crop Yield Prediction',
-    text: 'District-level yield prediction for Wheat (SaTran foundation model) and Corn (CropYieldNet) from Landsat-8 imagery.',
-    tag: 'Wheat · Corn',
-    icon: 'M3 20h18M6 16v-5M10 16V8M14 16v-6M18 16V5',
+    text: 'Estimate district-level crop yield from satellite imagery.',
   },
   {
     to: '/early_prediction',
+    img: img_early,
+    label: '02 / EARLY INSIGHT',
     title: 'Early Prediction',
-    text: 'Yield forecasts up to 8 weeks before harvest, showing how accuracy improves week by week.',
-    tag: 'Wheat · Rice',
-    icon: 'M12 7v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z',
+    text: 'Forecast yield up to 8 weeks before the harvest.',
   },
   {
     to: '/next_crop_cycle',
+    img: img_next_cycle,
+    label: '03 / NEXT SEASON',
     title: 'Next Crop Cycle Prediction',
-    text: 'Predicts the coming season’s yield and gives district-wise advisories to plan ahead.',
-    tag: 'Wheat · Rice',
-    icon: 'M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4',
+    text: 'Predict next season’s yield, with district-wise advisories.',
   },
   {
     to: '/multi_horizon_prediction',
+    img: null, // no photo yet: card shows a blank square
+    label: '04 / MULTI-YEAR',
     title: 'Multi Horizon Prediction',
-    text: 'Predicting crop yields for multiple future years.',
-    tag: 'Multi-year',
-    icon: 'M3 8h18M3 8V5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v3M3 8v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V8M8 2v4M16 2v4M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2',
+    text: 'Predict crop yields for multiple future years.',
   },
   {
     to: '/variability_prediction',
+    img: img_variability,
+    label: '05 / VARIABILITY',
     title: 'Variability Prediction',
-    text: 'Yield prediction that accounts for within-district variability, compared against the standard model.',
-    tag: 'Wheat · Rice',
-    icon: 'M3 17l5-6 4 4 5-7 4 5M3 21h18',
+    text: 'Predict yield while accounting for differences in sowing dates across regions.',
   },
   {
     to: '/cyp_with_crop',
+    img: img_crop_model,
+    label: '06 / CROP MODELS',
     title: 'CYP with Crop Model',
-    text: 'Hybrid model combining the SaTran foundation model with the APSIM crop simulation model.',
-    tag: 'Hybrid Model',
-    icon: 'M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3',
+    text: 'Combine AI with APSIM crop-growth, soil-water and nutrient simulation.',
   },
   {
     to: '/farm_level_prediction',
+    img: img_farm_level,
+    label: '07 / FARM SCALE',
     title: 'Farm Level Prediction',
-    text: 'Bringing crop analytics closer to individual farms and field-level needs.',
-    tag: 'Field scale',
-    icon: 'M3 21V10l9-6 9 6v11M3 21h18M9 21v-6h6v6',
+    text: 'Bring crop analytics closer to individual farms and field-level needs.',
   },
   {
     to: '/semantic_crop_segmentation',
+    img: img_segmentation,
+    label: '08 / SEGMENTATION',
     title: 'Semantic Crop Segmentation',
-    text: 'Using computer vision to outline crop regions in satellite imagery, pixel by pixel.',
-    tag: 'Computer Vision',
-    icon: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z',
+    text: 'Outline crop regions in satellite imagery, pixel by pixel.',
   },
   {
     to: '/crop_classification',
+    img: img_classification,
+    label: '09 / CLASSIFICATION',
     title: 'Crop Classification',
-    text: 'Identifying which crop is grown in each field from satellite observations.',
-    tag: 'Computer Vision',
-    icon: 'M12 21c-4-3-7-7-7-11a7 7 0 0 1 14 0c0 4-3 8-7 11zM12 21V9M12 13l-3-2M12 11l3-2',
+    text: 'Identify which crop is grown in each field.',
   },
 ]
 
@@ -93,15 +101,6 @@ const relatedProjects = [
   'IFFCO-KISAN: Krishi Dev Gyan (KDG)',
 ]
 
-
-function Icon({ d }) {
-  return (
-    <svg viewBox='0 0 24 24' width='28' height='28' fill='none' stroke='currentColor'
-      strokeWidth='1.8' strokeLinecap='round' strokeLinejoin='round' aria-hidden='true'>
-      <path d={d} />
-    </svg>
-  )
-}
 
 // Hide a remote image (and show the fallback styling) if it fails to load.
 const hideOnError = (e) => { e.currentTarget.style.display = 'none' }
@@ -133,12 +132,11 @@ export default function Home() {
         <h2 className='section-title'>Applications</h2>
         <div className='app-grid'>
           {applications.map((a) => (
-            <Link key={a.to} to={a.to} className='app-card'>
-              <span className='app-icon'><Icon d={a.icon} /></span>
-              <span className='app-tag'>{a.tag}</span>
+            <Link key={a.to} to={a.to} className='app-card' title={a.text}>
+              <span className='app-thumb'>
+                {a.img && <img src={a.img} alt='' loading='lazy' />}
+              </span>
               <h3>{a.title}</h3>
-              <p>{a.text}</p>
-              <span className='app-cta'>Open tool →</span>
             </Link>
           ))}
         </div>

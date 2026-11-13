@@ -335,3 +335,43 @@ body {
 .home-overview img {
   filter: brightness(0.91) saturate(0.94);
 }
+
+/* Application cards: square photo + name (as on the original site) */
+.app-grid { gap: 2rem 1.75rem; }
+.app-grid .app-card {
+  flex: 0 1 calc((100% - 3.5rem) / 3);
+  max-width: 340px;
+  min-width: 220px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  align-items: center;
+  text-align: center;
+}
+.app-grid .app-card:hover { transform: translateY(-4px); box-shadow: none; }
+.app-thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--tint);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.app-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.app-card:hover .app-thumb img { transform: scale(1.05); }
+.app-grid .app-card h3 {
+  margin: 1rem 0 0;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+.app-grid .app-card:hover h3 { color: var(--navy-3); }
