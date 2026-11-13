@@ -392,3 +392,40 @@ body {
 .app-body p { font-size: 0.9rem; color: var(--muted); line-height: 1.55; margin: 0 0 1rem; flex: 1; }
 .app-body .app-cta { font-size: 0.82rem; font-weight: 700; color: var(--navy-2); }
 .app-card:hover .app-cta { color: var(--navy-3); }
+
+/* Applications section: green & cream look from the reference design.
+   Delete this block to return the section to the navy theme. */
+#applications {
+  --app-bg: #ecece4;
+  --app-card: #fdfdf7;
+  --app-forest: #1f3a2b;
+  --app-lime: #c9ef7c;
+  --app-green: #3f6b48;
+  --app-text: #1b2a20;
+  --app-muted: #66705f;
+  max-width: none;
+  background: var(--app-bg);
+  padding-left: max(1.5rem, calc((100% - 1200px) / 2 + 1.5rem));
+  padding-right: max(1.5rem, calc((100% - 1200px) / 2 + 1.5rem));
+  padding-bottom: 3.5rem;
+  margin-top: 3rem;
+}
+#applications .section-title { color: var(--app-forest); }
+#applications .section-title::after { background: var(--app-green); }
+#applications .app-grid .app-card {
+  background: var(--app-card);
+  border-color: #e2e3d6;
+}
+#applications .app-grid .app-card:hover {
+  border-color: #c9ccb6;
+  box-shadow: 0 10px 26px rgba(31, 58, 43, 0.12);
+}
+#applications .app-thumb { background: #dde6d6; }
+#applications .app-badge {
+  background: rgba(31, 58, 43, 0.92);
+  color: var(--app-lime);
+}
+#applications .app-grid .app-card h3 { color: var(--app-text); }
+#applications .app-body p { color: var(--app-muted); }
+#applications .app-body .app-cta,
+#applications .app-card:hover .app-cta { color: var(--app-green); }
