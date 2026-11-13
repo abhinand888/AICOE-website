@@ -10,8 +10,12 @@ export const tools = [
   { path: '/crop_yield_prediction', label: 'Crop Yield Prediction' },
   { path: '/early_prediction', label: 'Early Prediction' },
   { path: '/next_crop_cycle', label: 'Next Crop Cycle Prediction' },
+  { path: '/multi_horizon_prediction', label: 'Multi Horizon Prediction' },
   { path: '/variability_prediction', label: 'Variability Prediction' },
   { path: '/cyp_with_crop', label: 'CYP with Crop Model' },
+  { path: '/farm_level_prediction', label: 'Farm Level Prediction' },
+  { path: '/semantic_crop_segmentation', label: 'Semantic Crop Segmentation' },
+  { path: '/crop_classification', label: 'Crop Classification' },
 ]
 
 const sections = [

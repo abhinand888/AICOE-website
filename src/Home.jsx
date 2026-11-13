@@ -40,6 +40,13 @@ const applications = [
     icon: 'M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4',
   },
   {
+    to: '/multi_horizon_prediction',
+    title: 'Multi Horizon Prediction',
+    text: 'Predicting crop yields for multiple future years.',
+    tag: 'Multi-year',
+    icon: 'M3 8h18M3 8V5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v3M3 8v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V8M8 2v4M16 2v4M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2',
+  },
+  {
     to: '/variability_prediction',
     title: 'Variability Prediction',
     text: 'Yield prediction that accounts for within-district variability, compared against the standard model.',
@@ -53,12 +60,27 @@ const applications = [
     tag: 'Hybrid Model',
     icon: 'M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3',
   },
-]
-
-const upcoming = [
-  { title: 'Farm Level Prediction', img: remote.farm },
-  { title: 'Semantic Crop Segmentation', img: remote.segmentation },
-  { title: 'Crop Classification', img: remote.classification },
+  {
+    to: '/farm_level_prediction',
+    title: 'Farm Level Prediction',
+    text: 'Bringing crop analytics closer to individual farms and field-level needs.',
+    tag: 'Field scale',
+    icon: 'M3 21V10l9-6 9 6v11M3 21h18M9 21v-6h6v6',
+  },
+  {
+    to: '/semantic_crop_segmentation',
+    title: 'Semantic Crop Segmentation',
+    text: 'Using computer vision to outline crop regions in satellite imagery, pixel by pixel.',
+    tag: 'Computer Vision',
+    icon: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z',
+  },
+  {
+    to: '/crop_classification',
+    title: 'Crop Classification',
+    text: 'Identifying which crop is grown in each field from satellite observations.',
+    tag: 'Computer Vision',
+    icon: 'M12 21c-4-3-7-7-7-11a7 7 0 0 1 14 0c0 4-3 8-7 11zM12 21V9M12 13l-3-2M12 11l3-2',
+  },
 ]
 
 const relatedProjects = [
@@ -127,15 +149,6 @@ export default function Home() {
           ))}
         </div>
 
-        <h3 className='sub-title'>Coming soon</h3>
-        <div className='upcoming-grid'>
-          {upcoming.map((u) => (
-            <div key={u.title} className='upcoming-card'>
-              <img src={u.img} alt={u.title} loading='lazy' onError={hideOnError} />
-              <span>{u.title}</span>
-            </div>
-          ))}
-        </div>
       </section>
 
       <section className='home-overview'>
