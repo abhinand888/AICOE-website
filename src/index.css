@@ -329,3 +329,9 @@ body {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
+
+/* Home overview image: toned down so it sits calmly in the page.
+   Raise brightness toward 1 to make it lighter again. */
+.home-overview img {
+  filter: brightness(0.82) saturate(0.88);
+}
