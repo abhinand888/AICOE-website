@@ -7,7 +7,7 @@ import SiteNav from './SiteNav'
 import SiteFooter from './SiteFooter'
 import hero from './assets/ai_image.png'
 import consortium from './assets/consortium.webp'
-import overview from './assets/Project OverviewOne-Pager Professional Docs Banner in Black White Sleek Monochrome Style.png'
+import overview from './assets/smart_agriculture_india.webp'
 
 // Images that live on the BITS Pilani website. To host them yourself, put the
 // files in src/assets/ and swap these URLs for imports.
@@ -146,7 +146,7 @@ export default function Home() {
       </section>
 
       <section className='home-overview'>
-        <img src={overview} alt='AI for agriculture: satellite imaging across India' />
+        <img src={overview} alt='Smart agriculture across India: AI, a map of Indian states, and drone imaging over rice fields' />
       </section>
 
       <section id='consortium' className='home-section'>
