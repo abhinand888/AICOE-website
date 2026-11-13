@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import './App.css'
+import SiteNav from './SiteNav'
+import { Link } from 'react-router-dom'
 import Table from 'react-bootstrap/Table';
 import { DataGrid } from '@mui/x-data-grid';
 import Form from 'react-bootstrap/Form';
@@ -175,14 +177,7 @@ function Early_prediction() {
 
 
 
-      <Navbar className='navbar' data-bs-theme="dark">
-        <Container>
-          <Navbar.Brand href="#home"><img src={bits} alt="" height={80} /></Navbar.Brand>
-          <Nav className="me-auto">
-
-          </Nav>
-        </Container>
-      </Navbar>
+      <SiteNav />
 
       <div className="middle">
         <img src={hero} className='hero-img' alt="" />
@@ -190,7 +185,7 @@ function Early_prediction() {
         <div style={{ display: 'flex', alignItems: 'center' }}>
 
           <h2 style={{ marginTop: 20, width:'90vw', paddingLeft:'8vw' }}>Early Prediction</h2>
-          <Button style={{ height: '2.3rem', width: '5rem',  }} href='https://www.bits-pilani.ac.in/pilani/aicoe2024'>Back</Button>
+          <Button as={Link} to='/' style={{ height: '2.3rem', width: '5rem' }}>Back</Button>
         </div>
       <div className='dropdown-container'>
         <FormControl sx={{ m: 1, width: 350 }}>

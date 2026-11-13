@@ -43,7 +43,7 @@
 }
 .navbar{
   background-color: #1A165A;
-  height: 6rem;
+  min-height: 6rem;
   width: 100vw;
   /* margin-top: -2rem; */
   /* margin-left: -6rem; */
@@ -184,4 +184,19 @@
   .footer-img{
     width: 90vw;
   }
+}
+/* Site-wide menu linking all tools */
+.site-nav-links .nav-link{
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+  padding: 0.5rem 0.9rem !important;
+  border-radius: 6px;
+}
+.site-nav-links .nav-link:hover{
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+}
+.site-nav-links .nav-link.active{
+  color: #fff;
+  background: rgba(255,255,255,0.18);
 }
