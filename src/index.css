@@ -336,29 +336,31 @@ body {
   filter: brightness(0.91) saturate(0.94);
 }
 
-/* Application cards: square photo + name (as on the original site) */
-.app-grid { gap: 2rem 1.75rem; }
+/* Application cards: wide photo + numbered label + title + description */
+.app-grid { gap: 1.25rem; }
 .app-grid .app-card {
-  flex: 0 1 calc((100% - 3.5rem) / 3);
-  max-width: 340px;
-  min-width: 220px;
+  flex: 0 1 calc((100% - 2.5rem) / 3);
+  min-width: 260px;
   padding: 0;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-  align-items: center;
-  text-align: center;
-}
-.app-grid .app-card:hover { transform: translateY(-4px); box-shadow: none; }
-.app-thumb {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1 / 1;
   overflow: hidden;
-  border-radius: 14px;
-  background: var(--tint);
+  align-items: stretch;
+  text-align: left;
+  background: #fff;
   border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 1px 2px rgba(26, 22, 90, 0.05);
+}
+.app-grid .app-card:hover {
+  transform: translateY(-3px);
+  border-color: #cfcde8;
   box-shadow: var(--shadow);
+}
+.app-thumb {
+  position: relative;
+  display: block;
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+  background: var(--tint);
 }
 .app-thumb img {
   width: 100%;
@@ -368,10 +370,25 @@ body {
   transition: transform 0.4s ease;
 }
 .app-card:hover .app-thumb img { transform: scale(1.05); }
-.app-grid .app-card h3 {
-  margin: 1rem 0 0;
-  font-size: 1.08rem;
+.app-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  background: rgba(26, 22, 90, 0.9);
+  color: #fff;
+  font-size: 0.68rem;
   font-weight: 700;
-  color: var(--navy);
+  letter-spacing: 0.04em;
 }
-.app-grid .app-card:hover h3 { color: var(--navy-3); }
+.app-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.1rem 1.35rem 1.25rem;
+}
+.app-grid .app-card h3 { font-size: 1.1rem; font-weight: 700; margin: 0 0 0.45rem; color: var(--ink); }
+.app-body p { font-size: 0.9rem; color: var(--muted); line-height: 1.55; margin: 0 0 1rem; flex: 1; }
+.app-body .app-cta { font-size: 0.82rem; font-weight: 700; color: var(--navy-2); }
+.app-card:hover .app-cta { color: var(--navy-3); }
