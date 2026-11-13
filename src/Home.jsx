@@ -6,6 +6,7 @@ import './Home.css'
 import SiteNav from './SiteNav'
 import SiteFooter from './SiteFooter'
 import hero from './assets/ai_image.png'
+import consortium from './assets/consortium.webp'
 import overview from './assets/Project OverviewOne-Pager Professional Docs Banner in Black White Sleek Monochrome Style.png'
 
 // Images that live on the BITS Pilani website. To host them yourself, put the
@@ -83,14 +84,6 @@ const applications = [
   },
 ]
 
-// Consortium members named in the related-projects list.
-const partners = [
-  { name: 'BITS Pilani', note: 'Lead institution' },
-  { name: 'Iowa State University (ISU)', note: 'AIIRA & COALESCE (NSF)' },
-  { name: 'IIIT Hyderabad', note: 'eSAGU · Crop Darpan' },
-  { name: 'IFFCO-KISAN', note: 'Krishi Dev Gyan (KDG)' },
-]
-
 const relatedProjects = [
   'BITS Pilani: AI-intervened tribal development for water conservation, livelihood, and health (Ministry of Tribal Affairs)',
   'BITS Pilani: Sensor data augmentation for large-scale agronomic semantic segmentation of farmland (DST-SERB)',
@@ -158,15 +151,8 @@ export default function Home() {
 
       <section id='consortium' className='home-section'>
         <h2 className='section-title'>Consortium</h2>
-        {/* Shown until the consortium picture is saved into src/assets. */}
-        <div className='partner-chips'>
-          {partners.map((p) => (
-            <div key={p.name} className='partner-chip'>
-              <strong>{p.name}</strong>
-              <small>{p.note}</small>
-            </div>
-          ))}
-        </div>
+        <img className='consortium-img' src={consortium} loading='lazy'
+          alt='AICoE consortium: BITS Pilani at the centre with IARI (crop omics and wet labs), IIIT Hyderabad (environmental sustainability, GIS and ICT for agriculture), Indian Statistical Institute (HSI analytics), Pixxel (HSI and satellite data), SAC (satellite technology and environmental science), IFFCO Kisan (experimental farms, digital twin, outreach), Iowa State University (AI, experimental farms, digital twin) and Wadhwani AI (AI and social connect)' />
       </section>
 
       <section id='related-projects' className='home-section'>

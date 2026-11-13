@@ -317,24 +317,15 @@ body {
   .page-header-art { inset: 0; opacity: 0.15; }
 }
 
-/* Consortium partners */
-.partner-chips {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-  max-width: 1000px;
+/* Consortium picture */
+.consortium-img {
+  display: block;
+  width: 100%;
+  max-width: 900px;
   margin: 0 auto;
-}
-.partner-chip {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-  padding: 1.25rem;
+  padding: 1.5rem;
   background: #fff;
   border: 1px solid var(--line);
-  border-top: 4px solid var(--navy-2);
-  border-radius: 14px;
+  border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
-.partner-chip strong { color: var(--navy); font-size: 1.05rem; }
-.partner-chip small { color: var(--muted); }
