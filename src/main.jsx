@@ -7,16 +7,19 @@ import NextCropCycle from './ncc.jsx'
 import './index.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import CYP_with_crop from './cyp.jsx'
+import Home from './Home.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
 <Routes>
-        <Route path="/" element={<App title='App'></App>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/crop_yield_prediction" element={<App title='App'></App>} />
       <Route path="/variability_prediction" element={<Variability_prediction title='About'></Variability_prediction>} />
       <Route path="/early_prediction" element={<Early_prediction title='About'></Early_prediction>} />
-      <Route path="/next_crop_cycle" element={<NextCropCycle title='About'></NextCropCycle>} />\
+      <Route path="/next_crop_cycle" element={<NextCropCycle title='About'></NextCropCycle>} />
       <Route path="/cyp_with_crop" element={<CYP_with_crop title='About'></CYP_with_crop>} />
+        <Route path="*" element={<Home />} />
       </Routes>
     </BrowserRouter>
     

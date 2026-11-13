@@ -1,31 +1,49 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link, useLocation } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
+import NavDropdown from 'react-bootstrap/NavDropdown'
 import bits from './assets/University_Logo_AllCampuses.png'
 
 // All tools live on this site, so every link stays on our own deployment.
 export const tools = [
-  { path: '/', label: 'Crop Yield Prediction' },
-  { path: '/cyp_with_crop', label: 'CYP with Crop' },
+  { path: '/crop_yield_prediction', label: 'Crop Yield Prediction' },
   { path: '/early_prediction', label: 'Early Prediction' },
+  { path: '/next_crop_cycle', label: 'Next Crop Cycle Prediction' },
   { path: '/variability_prediction', label: 'Variability Prediction' },
-  { path: '/next_crop_cycle', label: 'Next Crop Cycle' },
+  { path: '/cyp_with_crop', label: 'CYP with Crop Model' },
+]
+
+const sections = [
+  { hash: '#consortium', label: 'Consortium' },
+  { hash: '#related-projects', label: 'Related Projects' },
+  { hash: '#contact', label: 'Contact' },
 ]
 
 export default function SiteNav() {
+  const { pathname } = useLocation()
+  const onTool = tools.some((t) => t.path === pathname)
+
   return (
-    <Navbar className='navbar' data-bs-theme='dark' expand='lg'>
+    <Navbar className='navbar' data-bs-theme='dark' expand='lg' collapseOnSelect>
       <Container fluid className='px-4'>
-        <Navbar.Brand as={NavLink} to='/'>
+        <Navbar.Brand as={Link} to='/'>
           <img src={bits} alt='BITS Pilani' height={80} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='site-nav' />
         <Navbar.Collapse id='site-nav'>
           <Nav className='ms-auto site-nav-links'>
-            {tools.map((t) => (
-              <Nav.Link key={t.path} as={NavLink} to={t.path} end>
-                {t.label}
+            <Nav.Link as={NavLink} to='/' end eventKey='home'>Home</Nav.Link>
+            <NavDropdown title='Applications' id='apps-dropdown' active={onTool}>
+              {tools.map((t) => (
+                <NavDropdown.Item key={t.path} as={NavLink} to={t.path} eventKey={t.path}>
+                  {t.label}
+                </NavDropdown.Item>
+              ))}
+            </NavDropdown>
+            {sections.map((s) => (
+              <Nav.Link key={s.hash} as={Link} to={'/' + s.hash} eventKey={s.hash}>
+                {s.label}
               </Nav.Link>
             ))}
           </Nav>

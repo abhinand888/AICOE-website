@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import './App.css'
 import SiteNav from './SiteNav'
+import { Link } from 'react-router-dom'
 import Table from 'react-bootstrap/Table';
 import { DataGrid } from '@mui/x-data-grid';
 import Form from 'react-bootstrap/Form';
@@ -158,6 +159,7 @@ function App() {
       <div style={{ display: 'flex', alignItems: 'center' }}>
 
           <h2 style={{ marginTop: 20, width:'90vw', paddingLeft:'8vw' }}>Crop Yield Prediction</h2>
+          <Button as={Link} to='/' style={{ height: '2.3rem', width: '5rem' }}>Back</Button>
           
         </div>
       <div className='dropdown-container'>
