@@ -308,9 +308,10 @@ function Early_prediction() {
                   <tr><td>Prediction for :</td><td>2023</td></tr>
                   <tr><td>No. of districts: </td><td>362</td></tr>
                   <tr><td>Unit:  </td><td>Bu/ac </td></tr>
-                  <tr><td>RMSE : </td><td>12.025</td></tr>
+                  <tr><td>RMSE : </td><td>12.045</td></tr>
+                  <tr><td>RMSE (Average±Stddev) : </td><td>12.145 ± 1.29</td></tr>
                   <tr><td>MAE : </td><td>8.784</td></tr>
-
+                  <tr><td>MAE (Average±Stddev) : </td><td>8.124 ± 0.73</td></tr>
                 </tbody></Table>
             </div>
 
@@ -336,8 +337,9 @@ function Early_prediction() {
                   <tr><td>No. of districts: </td><td>152</td></tr>
                   <tr><td>Unit:  </td><td>Bu/ac</td></tr>
                   <tr><td>RMSE : </td><td>5.780</td></tr>
+                  <tr><td>RMSE (Average±Stddev) : </td><td>5.985 ± 1.29</td></tr>
                   <tr><td>MAE : </td><td>4.141</td></tr>
-
+                  <tr><td>MAE (Average±Stddev) : </td><td>4.971 ± 0.73</td></tr>
                 </tbody></Table>
             </div>
 
