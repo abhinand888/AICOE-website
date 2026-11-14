@@ -15,6 +15,7 @@ import img_crop_model from './assets/apps/crop_model.webp'
 import img_farm_level from './assets/apps/farm_level.webp'
 import img_segmentation from './assets/apps/segmentation.webp'
 import img_classification from './assets/apps/classification.webp'
+import img_multi_horizon from './assets/apps/multi_horizon.webp'
 import overview from './assets/smart_agriculture_india.webp'
 
 // Images that live on the BITS Pilani website. To host them yourself, put the
@@ -50,7 +51,8 @@ const applications = [
   },
   {
     to: '/multi_horizon_prediction',
-    img: null, // no photo yet: card shows a blank square
+    img: img_multi_horizon,
+    pos: 'center 0%',
     label: '04 / MULTI-YEAR',
     title: 'Multi Horizon Prediction',
     text: 'Predict crop yields for multiple future years.',
