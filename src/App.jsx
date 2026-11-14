@@ -35,6 +35,8 @@ import cornDataPred from './assets/csvjson (5).json'
 import cornPred from './assets/Corn-Pred.jpg'
 import ricePred from './assets/rice_predictions.json'
 import ricePerf from './assets/rice_model_performance.png'
+import soyPred from './assets/soy_predictions.json'
+import soyPerf from './assets/soy_model_performance.png'
 import TagLine from './assets/InnovateAchieveLead.jpg'
 
 
@@ -120,6 +122,9 @@ function App() {
     const callRice = ()=>{
       setData1(ricePred.filter((r)=>data2.includes(r.Dist_ID)));
     }
+    const callSoy = ()=>{
+      setData1(soyPred.filter((r)=>data2.includes(r.Dist_ID)));
+    }
     const call2 =()=>{
       const corn = cornDataPred.filter((cornDataPred)=>{for (let index = 0; index < data2.length; index++){
         if(data2[index]==cornDataPred.Dist_ID){
@@ -187,7 +192,7 @@ function App() {
           >Wheat</MenuItem>
           <MenuItem value="Corn">Corn</MenuItem>
           <MenuItem value="Rice">Rice</MenuItem>
-          <MenuItem disabled value="Soya">Soya</MenuItem>
+          <MenuItem value="Soya">Soya</MenuItem>
         </Select>
       </FormControl>
       
@@ -277,6 +282,29 @@ function App() {
         </tbody></Table>
     </div>
     <iframe className='Map' title="Rice Producing Districts" aria-label="Map" id="datawrapper-chart-TumWF" src="https://datawrapper.dwcdn.net/TumWF/1/" scrolling="no" frameBorder="0"></iframe>
+    </div>
+    </>
+    :<></>}
+
+    {data==="Soya"?<>
+      <div className='wheat-data' style={{display:'flex', marginTop:'2rem', justifyContent:'space-evenly', alignItems:'center', width:'70vw'}}>
+        <div className='metadata' style={{textAlign:'left'}}>
+    <h1>Data & Model</h1>
+    <Table className='table' striped bordered hover>
+      <tbody>
+        <tr><td>Satellite Used: </td><td>Sentinel-2</td></tr>
+        <tr><td>Data Modality: </td><td>Histogram time series + soil + weather</td></tr>
+        <tr><td>Model: </td><td>EYNet (cross-attention, contrastive learning)</td></tr>
+        <tr><td>Training data: </td><td>2016-2022</td></tr>
+        <tr><td>Prediction for :</td><td>2023</td></tr>
+        <tr><td>No. of districts: </td><td>156</td></tr>
+        <tr><td>Unit:  </td><td>Bu/ac</td></tr>
+        <tr><td>RMSE (best case) : </td><td>7.646</td></tr>
+        <tr><td>RMSE (Average±Stddev) : </td><td>7.786 ± 0.16</td></tr>
+        <tr><td>MAE (best case): </td><td>4.635</td></tr>
+        <tr><td>MAE (Average±Stddev) : </td><td>4.730 ± 0.08</td></tr>
+        </tbody></Table>
+    </div>
     </div>
     </>
     :<></>}
@@ -376,6 +404,29 @@ function App() {
       </div>
       <Button className='search' onClick={()=>{if(perf){setperf(false)} else{setperf(true)} }}> Model Performance</Button>
       </>
+:data==="Soya"?<><div className='dropdown-2'>
+    <FormControl sx={{ m: 1, width: 350 }}>
+        <InputLabel id="soy-district-label">District</InputLabel>
+        <Select
+          labelId="soy-district-label"
+          multiple
+          value={distName}
+          onChange={handleChange}
+          input={<OutlinedInput label="District Name" />}
+          renderValue={(selected) => `${selected.length} district${selected.length === 1 ? '' : 's'} selected`}
+          MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
+        >{soyPred.map((r) => (
+          <MenuItem key={r.Dist_ID} value={r.Dist_ID}>
+            <Checkbox checked={distName.indexOf(r.Dist_ID) > -1} />
+            <ListItemText primary={r.District} />
+          </MenuItem>
+        ))}
+        </Select>
+      </FormControl>
+      <Button className='search' onClick={()=>{callSoy();setIsLoading(false);seterror(null)}}> Predict Yield</Button>
+      </div>
+      <Button className='search' onClick={()=>{if(perf){setperf(false)} else{setperf(true)} }}> Model Performance</Button>
+      </>
       :<></>}
       
     
@@ -399,7 +450,7 @@ function App() {
     //     {data1.map((data1)=>{return(<><tr><td>{data1.DistrictID}</td><td>{data1.DistrictName}</td><td>{data1.Actual}</td><td>{data1.Predicted}</td></tr></>);})}
     //   </tbody>
     // </Table>
-   <>{data==="Corn" || data==="Rice"?<><DataGrid className='table1' disableColumnMenu disableColumnSorting disableColumnResize columns={columns2} rows={data1} getRowId={(row)=>generateRandom()} ></DataGrid></>:<></>}
+   <>{data==="Corn" || data==="Rice" || data==="Soya"?<><DataGrid className='table1' disableColumnMenu disableColumnSorting disableColumnResize columns={columns2} rows={data1} getRowId={(row)=>generateRandom()} ></DataGrid></>:<></>}
     {data==="Wheat"?<><DataGrid className='table1' disableColumnMenu disableColumnSorting disableColumnResize columns={columns} rows={data1} getRowId={(row)=>generateRandom()} ></DataGrid></>:<></>}</>
       :
        <h1 style={{color:'red'}}> {error} </h1>
@@ -415,6 +466,12 @@ function App() {
       {display:'flex', justifyContent:'center', alignItems:'center', width:'100vw', marginTop:20}
     }> <img src={PerfTable} alt="" style={{width:'50vw'}} />
     <img src={PerfGraph} alt="" style={{width:'50vw'}} /> </div></>:<></>:<></>}
+
+    {data==="Soya" ? perf ?<><h1> Model Performance</h1>
+    <div className='Model-perf'  style={
+      {display:'flex', justifyContent:'center', alignItems:'center', width:'100vw', marginTop:20}
+    }> <img src={soyPerf} alt="Soy model performance: predicted vs actual yield and error distribution" style={{width:'70vw'}} />
+     </div></>:<></>:<></>}
 
     {data==="Rice" ? perf ?<><h1> Model Performance</h1>
     <div className='Model-perf'  style={
