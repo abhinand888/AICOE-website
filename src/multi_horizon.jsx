@@ -82,7 +82,7 @@ function MultiHorizonPrediction() {
               <h1>Data & Model</h1>
               <Table className='table' striped bordered hover>
                 <tbody>
-                  <tr><td>Satellite Used: </td><td>Landsat-8</td></tr>
+                  <tr><td>Satellite Used: </td><td>Sentinel-2</td></tr>
                   <tr><td>Data Modality: </td><td>Histogram time series + soil + weather</td></tr>
                   <tr><td>Model: </td><td>EYNet (cross-attention, contrastive learning)</td></tr>
                   <tr><td>Training data: </td><td>2014-2019</td></tr>
