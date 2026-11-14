@@ -37,6 +37,9 @@ import cornPred from './assets/Corn-Pred.jpg'
 import TagLine from './assets/InnovateAchieveLead.jpg'
 import ep_wheat from './assets/ep_wheat.png'
 import ep_rice from './assets/ep_rice.png'
+import ep_corn from './assets/ep_corn.png'
+import cornEarly from './assets/corn_early_predictions.json'
+const cornDistricts = [...cornEarly].sort((a, b) => a.District_Name.localeCompare(b.District_Name))
 import wheatDataPred from './assets/wheat_pred_json.json'
 
 
@@ -120,6 +123,9 @@ function Early_prediction() {
     })
     console.log(wheat1);
     setData1(wheat1);
+  }
+  const callCorn = () => {
+    setData1(cornEarly.filter((r) => data2.includes(r.District_ID)));
   }
   const call2 = () => {
     const corn = riceEarly.filter((r) => {
@@ -211,6 +217,7 @@ function Early_prediction() {
             <MenuItem value="Wheat"
             >Wheat</MenuItem>
             <MenuItem value="Rice">Rice</MenuItem>
+            <MenuItem value="Corn">Corn</MenuItem>
             {/* <MenuItem disabled value="Rice">Rice</MenuItem>
           <MenuItem disabled value="Soya">Soya</MenuItem> */}
           </Select>
@@ -274,6 +281,35 @@ function Early_prediction() {
 
             <iframe className='Map' title="Rice Producing Districts" aria-label="Map" id="datawrapper-chart-zkBDx" src="https://datawrapper.dwcdn.net/zkBDx/1/" scrolling="no" frameborder="0" ></iframe><script type="text/javascript">{!function () { "use strict"; window.addEventListener("message", (function (a) { if (void 0 !== a.data["datawrapper-height"]) { var e = document.querySelectorAll("iframe"); for (var t in a.data["datawrapper-height"]) for (var r = 0; r < e.length; r++)if (e[r].contentWindow === a.source) { var i = a.data["datawrapper-height"][t] + "px"; e[r].style.height = i } } })) }()}
             </script>
+          </div>
+        </>
+          : <></>}
+
+        {data === "Corn" ? <>
+          <div className='wheat-data' style={{ display: 'flex', marginTop: '2rem', justifyContent: 'space-evenly', alignItems: 'center', width: '70vw' }}>
+            <div className='metadata' style={{ textAlign: 'left' }}>
+              <h1>Data & Model</h1>
+              <Table className='table' striped bordered hover>
+                <thead>
+
+                </thead>
+                <tbody>
+                  <tr><td>Satellite Used: </td><td>Sentinel-2</td></tr>
+                  <tr><td>Data Modality: </td><td>Histogram time series + soil + weather</td></tr>
+                  <tr><td>Model: </td><td>CrossCYN (cross-attention)</td></tr>
+                  <tr><td>Training data: </td><td>2016-2021</td></tr>
+                  <tr><td>Prediction for :</td><td>2023</td></tr>
+                  <tr><td>No. of districts: </td><td>362</td></tr>
+                  <tr><td>Unit:  </td><td>Bu/ac </td></tr>
+                  <tr><td>RMSE (best case) : </td><td>14.193</td></tr>
+                  <tr><td>RMSE (Average±Stddev) : </td><td>14.584 ± 0.39</td></tr>
+                  <tr><td>MAE (best case): </td><td>10.130</td></tr>
+                  <tr><td>MAE (Average±Stddev) : </td><td>10.535 ± 0.40</td></tr>
+
+                </tbody></Table>
+            </div>
+
+            <iframe className='Map' title="Corn Producing Districts" aria-label="Map" id="datawrapper-chart-0qze0" src="https://datawrapper.dwcdn.net/0qze0/1/" scrolling="no" frameBorder="0"></iframe>
           </div>
         </>
           : <></>}
@@ -425,6 +461,76 @@ function Early_prediction() {
         </div>
           <Button className='search' onClick={() => { if (perf) { setperf(false) } else { setperf(true) } }}> Model Performance</Button>
         </>
+        : data === "Corn" ? <><div className='dropdown-2'>
+          <FormControl sx={{ m: 1, width: 350 }}>
+            <InputLabel id="demo-multiple-checkbox-label">District</InputLabel>
+            <Select
+              labelId="demo-multiple-checkbox-label"
+              id="demo-multiple-checkbox"
+              multiple
+              value={distName}
+              onChange={handleChange}
+              input={<OutlinedInput label="District Name" />}
+              renderValue={(selected) => `${selected.length} district${selected.length === 1 ? '' : 's'} selected`}
+              MenuProps={{
+                MenuListProps: {
+                  sx: {
+                    "li.MuiButtonBase-root": {
+                      display: "flex",
+                      flexDirection: "row",
+                    },
+                  },
+                },
+                PaperProps: { sx: { maxHeight: 200 } },
+              }}
+            > {cornDistricts.map((r) => (
+              <MenuItem key={r.District_ID} value={r.District_ID}>
+                <Checkbox checked={distName.indexOf(r.District_ID) > -1} />
+                <ListItemText primary={r.District_Name} />
+              </MenuItem>
+            ))}
+
+            </Select>
+
+          </FormControl>
+
+          <FormControl sx={{ m: 1, width: 180 }}>
+            <InputLabel id="demo-multiple-checkbox-label">Select week</InputLabel>
+            <Select
+              labelId="demo-multiple-checkbox-label"
+              id="demo-multiple-checkbox"
+              value={data3}
+              onChange={handleChangeWeek}
+              input={<OutlinedInput label="week Name" />}
+              
+              MenuProps={{
+                MenuListProps: {
+                  sx: {
+                    "li.MuiButtonBase-root": {
+                      display: "flex",
+                      flexDirection: "row",
+                    },
+                  },
+                },
+                PaperProps: { sx: { maxHeight: 200 } },
+              }}
+            > { }
+              {columnselect.map((columnselect) => (
+            <MenuItem key={columnselect.field} value={columnselect.field}>
+              
+              
+              <ListItemText primary={columnselect.field} />
+            </MenuItem>
+            
+              ))}
+            </Select>
+
+          </FormControl>
+
+          <Button className='search' onClick={() => { callCorn(); setIsLoading(false); seterror(null) }}> Predict Yield</Button>
+        </div>
+          <Button className='search' onClick={() => { if (perf) { setperf(false) } else { setperf(true) } }}> Model Performance</Button>
+        </>
           : <></>}
 
 
@@ -448,7 +554,7 @@ function Early_prediction() {
             //     {data1.map((data1)=>{return(<><tr><td>{data1.DistrictID}</td><td>{data1.DistrictName}</td><td>{data1.Actual}</td><td>{data1.Predicted}</td></tr></>);})}
             //   </tbody>
             // </Table>
-            <>{data === "Rice" ? <><DataGrid className='table1' disableColumnMenu disableColumnSorting disableColumnResize columns={columns2.filter(element=> (element.field == 'District_Name' || element.field  == 'Actual' || element.field == data3))} rows={data1} getRowId={(row) => generateRandom()} ></DataGrid></> : <></>}
+            <>{data === "Rice" || data === "Corn" ? <><DataGrid className='table1' disableColumnMenu disableColumnSorting disableColumnResize columns={columns2.filter(element=> (element.field == 'District_Name' || element.field  == 'Actual' || element.field == data3))} rows={data1} getRowId={(row) => generateRandom()} ></DataGrid></> : <></>}
               {data === "Wheat" ? <><DataGrid className='table1' disableColumnMenu disableColumnSorting disableColumnResize columns={columns2.filter(element=> (element.field == 'District_Name' || element.field  == 'Actual' || element.field == data3))} rows={data1} getRowId={(row) => generateRandom()} ></DataGrid></> : <></>}</>
             :
             <h1 style={{ color: 'red' }}> {error} </h1>
@@ -463,6 +569,12 @@ function Early_prediction() {
           <div className='Model-perf' style={
             { display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100vw', marginTop: 20 }
           }> <img src={ep_wheat} alt="" style={{ width: '50vw' }} />
+          </div></> : <></> : <></>}
+
+        {data === "Corn" ? perf ? <><h1> Model Performance</h1>
+          <div className='Model-perf' style={
+            { display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100vw', marginTop: 20 }
+          }> <img src={ep_corn} alt="Early prediction for corn: MAE by weeks before harvest" style={{ width: '50vw' }} />
           </div></> : <></> : <></>}
 
         {data === "Rice" ? perf ? <><h1> Model Performance</h1>
