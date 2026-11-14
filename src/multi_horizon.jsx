@@ -120,10 +120,10 @@ function MultiHorizonPrediction() {
                   <tr><td>No. of districts: </td><td>24</td></tr>
                   <tr><td>Unit: </td><td>Bu/ac</td></tr>
                   <tr><td colSpan={2}><b>RMSE</b></td></tr>
-                  <tr><td>N (2020) : </td><td>4.825</td></tr>
-                  <tr><td>N+1 (2021) : </td><td>6.765</td></tr>
-                  <tr><td>N+2 (2022) : </td><td>6.523</td></tr>
-                  <tr><td>N+3 (2023) : </td><td>9.060</td></tr>
+                  <tr><td>N (2020) : </td><td>8.2463</td></tr>
+                  <tr><td>N+1 (2021) : </td><td>8.3925</td></tr>
+                  <tr><td>N+2 (2022) : </td><td>8.4203</td></tr>
+                  <tr><td>N+3 (2023) : </td><td>8.8995</td></tr>
                 </tbody>
               </Table>
             </div>
