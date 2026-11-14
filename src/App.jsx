@@ -266,7 +266,7 @@ function App() {
         <tr><td>Satellite Used: </td><td>Sentinel-2</td></tr>
         <tr><td>Data Modality: </td><td>Histogram time series + soil + weather</td></tr>
         <tr><td>Model: </td><td>EYNet (cross-attention, contrastive learning)</td></tr>
-        <tr><td>Training data: </td><td>2016-2021</td></tr>
+        <tr><td>Training data: </td><td>2016-2022</td></tr>
         <tr><td>Prediction for :</td><td>2023</td></tr>
         <tr><td>No. of districts: </td><td>248</td></tr>
         <tr><td>Unit:  </td><td>Bu/ac</td></tr>
