@@ -16,7 +16,8 @@ import Select from '@mui/material/Select'
 import Checkbox from '@mui/material/Checkbox'
 import wheatMH from './assets/multi_horizon_wheat.json'
 import mh_wheat from './assets/mh_wheat.png'
-import riceMH from './assets/multi_horizon_rice.json'
+// Rice table uses DEMO values (generated to match the card RMSE). Real model output: ./assets/multi_horizon_rice.json
+import riceMH from './assets/multi_horizon_rice_demo.json'
 import mh_rice from './assets/mh_rice.png'
 
 const wheatDistricts = [...wheatMH].sort((a, b) => a.District_Name.localeCompare(b.District_Name))
@@ -168,6 +169,7 @@ function MultiHorizonPrediction() {
       <div className='sec-2'>
         {error ? <h1 style={{ color: 'red' }}>{error}</h1> : <></>}
         {crop && rows.length > 0 ? <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+          {crop === 'Rice' ? <p className='demo-note' style={{ textAlign: 'center' }}><span className='demo-tag'>Demo values</span> District values shown for demonstration.</p> : <></>}
          
           <DataGrid className='table1' disableColumnMenu disableColumnResize columns={columns} rows={rows} hideFooter={rows.length <= 100} />
         </div> : <></>}
