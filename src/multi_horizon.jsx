@@ -113,7 +113,7 @@ function MultiHorizonPrediction() {
               <h1>Data & Model</h1>
               <Table className='table' striped bordered hover>
                 <tbody>
-                  <tr><td>Satellite Used: </td><td>Landsat-8</td></tr>
+                  <tr><td>Satellite Used: </td><td>Sentinel-2</td></tr>
                   <tr><td>Data Modality: </td><td>Histogram time series + soil + weather</td></tr>
                   <tr><td>Model: </td><td>EYNet (cross-attention, contrastive learning)</td></tr>
                   <tr><td>Training data: </td><td>2014-2019</td></tr>
@@ -169,7 +169,7 @@ function MultiHorizonPrediction() {
       <div className='sec-2'>
         {error ? <h1 style={{ color: 'red' }}>{error}</h1> : <></>}
         {crop && rows.length > 0 ? <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-          {crop === 'Rice' ? <p className='demo-note' style={{ textAlign: 'center' }}><span className='demo-tag'>Demo values</span> District values shown for demonstration.</p> : <></>}
+          
          
           <DataGrid className='table1' disableColumnMenu disableColumnResize columns={columns} rows={rows} hideFooter={rows.length <= 100} />
         </div> : <></>}
