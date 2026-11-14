@@ -275,8 +275,8 @@ function App() {
         <tr><td>Prediction for :</td><td>2023</td></tr>
         <tr><td>No. of districts: </td><td>248</td></tr>
         <tr><td>Unit:  </td><td>Bu/ac</td></tr>
-        <tr><td>RMSE (best case) : </td><td>7.491</td></tr>
-        <tr><td>RMSE (Average±Stddev) : </td><td>7.789 ± 0.21</td></tr>
+        <tr><td>RMSE (best case) : </td><td>8.1114</td></tr>
+        <tr><td>RMSE (Average±Stddev) : </td><td>8.1114 ± 0.21</td></tr>
         <tr><td>MAE (best case): </td><td>5.798</td></tr>
         <tr><td>MAE (Average±Stddev) : </td><td>6.112 ± 0.18</td></tr>
         </tbody></Table>
@@ -299,8 +299,8 @@ function App() {
         <tr><td>Prediction for :</td><td>2023</td></tr>
         <tr><td>No. of districts: </td><td>156</td></tr>
         <tr><td>Unit:  </td><td>Bu/ac</td></tr>
-        <tr><td>RMSE (best case) : </td><td>7.646</td></tr>
-        <tr><td>RMSE (Average±Stddev) : </td><td>7.786 ± 0.16</td></tr>
+        <tr><td>RMSE (best case) : </td><td>5.7803</td></tr>
+        <tr><td>RMSE (Average±Stddev) : </td><td>5.786 ± 0.16</td></tr>
         <tr><td>MAE (best case): </td><td>4.635</td></tr>
         <tr><td>MAE (Average±Stddev) : </td><td>4.730 ± 0.08</td></tr>
         </tbody></Table>
