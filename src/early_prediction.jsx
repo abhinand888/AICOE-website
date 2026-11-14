@@ -308,10 +308,8 @@ function Early_prediction() {
                   <tr><td>Prediction for :</td><td>2023</td></tr>
                   <tr><td>No. of districts: </td><td>362</td></tr>
                   <tr><td>Unit:  </td><td>Bu/ac </td></tr>
-                  <tr><td>RMSE (best case) : </td><td>14.193</td></tr>
-                  <tr><td>RMSE (Average±Stddev) : </td><td>14.584 ± 0.39</td></tr>
-                  <tr><td>MAE (best case): </td><td>10.130</td></tr>
-                  <tr><td>MAE (Average±Stddev) : </td><td>10.535 ± 0.40</td></tr>
+                  <tr><td>RMSE : </td><td>12.025</td></tr>
+                  <tr><td>MAE : </td><td>8.784</td></tr>
 
                 </tbody></Table>
             </div>
@@ -337,10 +335,8 @@ function Early_prediction() {
                   <tr><td>Prediction for :</td><td>2023</td></tr>
                   <tr><td>No. of districts: </td><td>152</td></tr>
                   <tr><td>Unit:  </td><td>Bu/ac</td></tr>
-                  <tr><td>RMSE (best case) : </td><td>7.525</td></tr>
-                  <tr><td>RMSE (Average±Stddev) : </td><td>7.584 ± 0.06</td></tr>
-                  <tr><td>MAE (best case): </td><td>4.575</td></tr>
-                  <tr><td>MAE (Average±Stddev) : </td><td>4.645 ± 0.07</td></tr>
+                  <tr><td>RMSE : </td><td>5.780</td></tr>
+                  <tr><td>MAE : </td><td>4.141</td></tr>
 
                 </tbody></Table>
             </div>
