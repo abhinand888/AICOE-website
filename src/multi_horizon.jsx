@@ -84,12 +84,12 @@ function MultiHorizonPrediction() {
                 <tbody>
                   <tr><td>Satellite Used: </td><td>Landsat-8</td></tr>
                   <tr><td>Data Modality: </td><td>Histogram time series + soil + weather</td></tr>
-                  <tr><td>Model: </td><td>CrossCYN (cross-attention fusion + BiLSTM, contrastive learning)</td></tr>
+                  <tr><td>Model: </td><td>EYNet (cross-attention, contrastive learning)</td></tr>
                   <tr><td>Training data: </td><td>2014-2019</td></tr>
                   <tr><td>Prediction for :</td><td>2020 (N), 2021 (N+1), 2022 (N+2), 2023 (N+3)</td></tr>
                   <tr><td>No. of districts: </td><td>31</td></tr>
                   <tr><td>Unit: </td><td>Bu/ac</td></tr>
-                  <tr><td colSpan={2}><b>RMSE</b> <span className='demo-tag'>Published results</span></td></tr>
+                  <tr><td colSpan={2}><b>RMSE</b></td></tr>
                   <tr><td>N (2020) : </td><td>8.3215</td></tr>
                   <tr><td>N+1 (2021) : </td><td>9.4155</td></tr>
                   <tr><td>N+2 (2022) : </td><td>9.7413</td></tr>
@@ -143,7 +143,7 @@ function MultiHorizonPrediction() {
 
       <div className='sec-3'>
         {crop === 'Wheat' && perf ? <>
-          <h1> Model Performance <span className='demo-tag'>Published results</span></h1>
+          <h1> Model Performance</h1>
           <div className='Model-perf' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100vw', marginTop: 20 }}>
             <img src={mh_wheat} alt='Multi horizon prediction for wheat: RMSE by horizon' style={{ width: '50vw' }} />
           </div>
