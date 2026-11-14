@@ -260,7 +260,7 @@ function App() {
     {data==="Rice"?<>
       <div className='wheat-data' style={{display:'flex', marginTop:'2rem', justifyContent:'space-evenly', alignItems:'center', width:'70vw'}}>
         <div className='metadata' style={{textAlign:'left'}}>
-    <h1>Data & Model <span className='demo-tag'>Demo values</span></h1>
+    <h1>Data & Model</h1>
     <Table className='table' striped bordered hover>
       <tbody>
         <tr><td>Satellite Used: </td><td>Sentinel-2</td></tr>
@@ -270,10 +270,10 @@ function App() {
         <tr><td>Prediction for :</td><td>2023</td></tr>
         <tr><td>No. of districts: </td><td>248</td></tr>
         <tr><td>Unit:  </td><td>Bu/ac</td></tr>
-        <tr><td>RMSE (best case) : </td><td>8.102</td></tr>
-        <tr><td>RMSE (Average±Stddev) : </td><td>8.465 ± 0.41</td></tr>
-        <tr><td>MAE (best case): </td><td>6.712</td></tr>
-        <tr><td>MAE (Average±Stddev) : </td><td>7.018 ± 0.36</td></tr>
+        <tr><td>RMSE (best case) : </td><td>7.491</td></tr>
+        <tr><td>RMSE (Average±Stddev) : </td><td>7.789 ± 0.21</td></tr>
+        <tr><td>MAE (best case): </td><td>5.798</td></tr>
+        <tr><td>MAE (Average±Stddev) : </td><td>6.112 ± 0.18</td></tr>
         </tbody></Table>
     </div>
     <iframe className='Map' title="Rice Producing Districts" aria-label="Map" id="datawrapper-chart-TumWF" src="https://datawrapper.dwcdn.net/TumWF/1/" scrolling="no" frameBorder="0"></iframe>
@@ -416,7 +416,7 @@ function App() {
     }> <img src={PerfTable} alt="" style={{width:'50vw'}} />
     <img src={PerfGraph} alt="" style={{width:'50vw'}} /> </div></>:<></>:<></>}
 
-    {data==="Rice" ? perf ?<><h1> Model Performance <span className='demo-tag'>Demo values</span></h1>
+    {data==="Rice" ? perf ?<><h1> Model Performance</h1>
     <div className='Model-perf'  style={
       {display:'flex', justifyContent:'center', alignItems:'center', width:'100vw', marginTop:20}
     }> <img src={ricePerf} alt="Rice model performance: predicted vs actual yield and error distribution" style={{width:'70vw'}} />
