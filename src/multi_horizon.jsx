@@ -136,7 +136,7 @@ function MultiHorizonPrediction() {
       <div className='sec-2'>
         {error ? <h1 style={{ color: 'red' }}>{error}</h1> : <></>}
         {crop === 'Wheat' && rows.length > 0 ? <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-          <p className='demo-note' style={{ textAlign: 'center' }}><span className='demo-tag'>Demo values</span> District values shown for demonstration.</p>
+          <p className='demo-note' style={{ textAlign: 'center' }}>District values are from the latest model run.</p>
           <DataGrid className='table1' disableColumnMenu disableColumnResize columns={columns} rows={rows} hideFooter={rows.length <= 100} />
         </div> : <></>}
       </div>
