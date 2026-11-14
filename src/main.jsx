@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import CYP_with_crop from './cyp.jsx'
 import Home from './Home.jsx'
 import AppPage from './AppPage.jsx'
+import MultiHorizonPrediction from './multi_horizon.jsx'
 import './index.css' // site theme: keep this last so it applies on top
 
 createRoot(document.getElementById('root')).render(
@@ -20,8 +21,7 @@ createRoot(document.getElementById('root')).render(
       <Route path="/early_prediction" element={<Early_prediction title='About'></Early_prediction>} />
       <Route path="/next_crop_cycle" element={<NextCropCycle title='About'></NextCropCycle>} />
       <Route path="/cyp_with_crop" element={<CYP_with_crop title='About'></CYP_with_crop>} />
-        <Route path="/multi_horizon_prediction" element={<AppPage title='Multi Horizon Prediction' tag='Multi-year'
-          intro='Predicting crop yields for multiple future years, so planning can look beyond a single season.' />} />
+        <Route path="/multi_horizon_prediction" element={<MultiHorizonPrediction />} />
         <Route path="/farm_level_prediction" element={<AppPage title='Farm Level Prediction' tag='Field scale'
           intro='Bringing crop analytics closer to individual farms and field-level needs.' />} />
         <Route path="/semantic_crop_segmentation" element={<AppPage title='Semantic Crop Segmentation' tag='Computer Vision'
