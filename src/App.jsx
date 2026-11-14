@@ -305,6 +305,7 @@ function App() {
         <tr><td>MAE (Average±Stddev) : </td><td>4.730 ± 0.08</td></tr>
         </tbody></Table>
     </div>
+    <iframe className='Map' title="Soy Producing Districts" aria-label="Map" id="datawrapper-chart-SylUS" src="https://datawrapper.dwcdn.net/SylUS/1/" scrolling="no" frameBorder="0"></iframe>
     </div>
     </>
     :<></>}
