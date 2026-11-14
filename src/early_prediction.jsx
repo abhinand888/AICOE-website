@@ -282,11 +282,7 @@ function Early_prediction() {
 
 
 
-        {data === "Rice" ? <>
-          <iframe title="Rice Producing Districts" aria-label="Map" id="datawrapper-chart-TumWF" src="https://datawrapper.dwcdn.net/TumWF/1/" style={{ "width": 500, "min-width": 100, " height": 800 }}></iframe><script type="text/javascript">{!function () { "use strict"; window.addEventListener("message", (function (a) { if (void 0 !== a.data["datawrapper-height"]) { var e = document.querySelectorAll("iframe"); for (var t in a.data["datawrapper-height"]) for (var r = 0; r < e.length; r++)if (e[r].contentWindow === a.source) { var i = a.data["datawrapper-height"][t] + "px"; e[r].style.height = i } } })) }()}
-          </script>
-        </>
-          : <></>}
+        
 
 
 
