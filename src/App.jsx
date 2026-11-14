@@ -33,6 +33,8 @@ import PerfTable from './assets/Pred-Table.jpg'
 import cornData from './assets/cornData (2).json'
 import cornDataPred from './assets/csvjson (5).json'
 import cornPred from './assets/Corn-Pred.jpg'
+import ricePred from './assets/rice_predictions.json'
+import ricePerf from './assets/rice_model_performance.png'
 import TagLine from './assets/InnovateAchieveLead.jpg'
 
 
@@ -115,6 +117,9 @@ function App() {
   });
   
     }
+    const callRice = ()=>{
+      setData1(ricePred.filter((r)=>data2.includes(r.Dist_ID)));
+    }
     const call2 =()=>{
       const corn = cornDataPred.filter((cornDataPred)=>{for (let index = 0; index < data2.length; index++){
         if(data2[index]==cornDataPred.Dist_ID){
@@ -153,7 +158,7 @@ function App() {
     
     <SiteNav />
 
-    <PageHeader title='Crop Yield Prediction' subtitle='District-level yield prediction from Landsat-8 satellite imagery.' />
+    <PageHeader title='Crop Yield Prediction' subtitle='District-level yield prediction from satellite imagery, soil and weather data.' />
       <div className='dropdown-container'>
       <FormControl sx={{ m: 1, width: 400 }}>
         <InputLabel>Crop Name</InputLabel>
@@ -181,7 +186,7 @@ function App() {
           <MenuItem value="Wheat"
           >Wheat</MenuItem>
           <MenuItem value="Corn">Corn</MenuItem>
-          <MenuItem disabled value="Rice">Rice</MenuItem>
+          <MenuItem value="Rice">Rice</MenuItem>
           <MenuItem disabled value="Soya">Soya</MenuItem>
         </Select>
       </FormControl>
@@ -253,8 +258,26 @@ function App() {
     
    
     {data==="Rice"?<>
-      <iframe title="Rice Producing Districts" aria-label="Map" id="datawrapper-chart-TumWF" src="https://datawrapper.dwcdn.net/TumWF/1/"  style={{"width": 500, "min-width": 100," height":800}}></iframe><script type="text/javascript">{!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}()}
-      </script>
+      <div className='wheat-data' style={{display:'flex', marginTop:'2rem', justifyContent:'space-evenly', alignItems:'center', width:'70vw'}}>
+        <div className='metadata' style={{textAlign:'left'}}>
+    <h1>Data & Model <span className='demo-tag'>Demo values</span></h1>
+    <Table className='table' striped bordered hover>
+      <tbody>
+        <tr><td>Satellite Used: </td><td>Sentinel-2</td></tr>
+        <tr><td>Data Modality: </td><td>Histogram time series + soil + weather</td></tr>
+        <tr><td>Model: </td><td>EYNet (cross-attention, contrastive learning)</td></tr>
+        <tr><td>Training data: </td><td>2016-2021</td></tr>
+        <tr><td>Prediction for :</td><td>2023</td></tr>
+        <tr><td>No. of districts: </td><td>248</td></tr>
+        <tr><td>Unit:  </td><td>Bu/ac</td></tr>
+        <tr><td>RMSE (best case) : </td><td>8.102</td></tr>
+        <tr><td>RMSE (Average±Stddev) : </td><td>8.465 ± 0.41</td></tr>
+        <tr><td>MAE (best case): </td><td>6.712</td></tr>
+        <tr><td>MAE (Average±Stddev) : </td><td>7.018 ± 0.36</td></tr>
+        </tbody></Table>
+    </div>
+    <iframe className='Map' title="Rice Producing Districts" aria-label="Map" id="datawrapper-chart-TumWF" src="https://datawrapper.dwcdn.net/TumWF/1/" scrolling="no" frameBorder="0"></iframe>
+    </div>
     </>
     :<></>}
 
@@ -330,6 +353,29 @@ function App() {
       </div>
       <Button className='search' onClick={()=>{if(perf){setperf(false)} else{setperf(true)} }}> Model Performance</Button>
       </>
+      :data==="Rice"?<><div className='dropdown-2'>
+    <FormControl sx={{ m: 1, width: 350 }}>
+        <InputLabel id="rice-district-label">District</InputLabel>
+        <Select
+          labelId="rice-district-label"
+          multiple
+          value={distName}
+          onChange={handleChange}
+          input={<OutlinedInput label="District Name" />}
+          renderValue={(selected) => `${selected.length} district${selected.length === 1 ? '' : 's'} selected`}
+          MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
+        >{ricePred.map((r) => (
+          <MenuItem key={r.Dist_ID} value={r.Dist_ID}>
+            <Checkbox checked={distName.indexOf(r.Dist_ID) > -1} />
+            <ListItemText primary={r.District} />
+          </MenuItem>
+        ))}
+        </Select>
+      </FormControl>
+      <Button className='search' onClick={()=>{callRice();setIsLoading(false);seterror(null)}}> Predict Yield</Button>
+      </div>
+      <Button className='search' onClick={()=>{if(perf){setperf(false)} else{setperf(true)} }}> Model Performance</Button>
+      </>
       :<></>}
       
     
@@ -353,7 +399,7 @@ function App() {
     //     {data1.map((data1)=>{return(<><tr><td>{data1.DistrictID}</td><td>{data1.DistrictName}</td><td>{data1.Actual}</td><td>{data1.Predicted}</td></tr></>);})}
     //   </tbody>
     // </Table>
-   <>{data==="Corn"?<><DataGrid className='table1' disableColumnMenu disableColumnSorting disableColumnResize columns={columns2} rows={data1} getRowId={(row)=>generateRandom()} ></DataGrid></>:<></>}
+   <>{data==="Corn" || data==="Rice"?<><DataGrid className='table1' disableColumnMenu disableColumnSorting disableColumnResize columns={columns2} rows={data1} getRowId={(row)=>generateRandom()} ></DataGrid></>:<></>}
     {data==="Wheat"?<><DataGrid className='table1' disableColumnMenu disableColumnSorting disableColumnResize columns={columns} rows={data1} getRowId={(row)=>generateRandom()} ></DataGrid></>:<></>}</>
       :
        <h1 style={{color:'red'}}> {error} </h1>
@@ -369,6 +415,12 @@ function App() {
       {display:'flex', justifyContent:'center', alignItems:'center', width:'100vw', marginTop:20}
     }> <img src={PerfTable} alt="" style={{width:'50vw'}} />
     <img src={PerfGraph} alt="" style={{width:'50vw'}} /> </div></>:<></>:<></>}
+
+    {data==="Rice" ? perf ?<><h1> Model Performance <span className='demo-tag'>Demo values</span></h1>
+    <div className='Model-perf'  style={
+      {display:'flex', justifyContent:'center', alignItems:'center', width:'100vw', marginTop:20}
+    }> <img src={ricePerf} alt="Rice model performance: predicted vs actual yield and error distribution" style={{width:'70vw'}} />
+     </div></>:<></>:<></>}
 
     {data==="Corn" ? perf ?<><h1> Model Performance</h1>
     <div className='Model-perf'  style={
