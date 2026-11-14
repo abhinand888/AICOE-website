@@ -31,7 +31,8 @@ import Spinner from './spinner';
 import PerfGraph from './assets/Pred-Graph.jpg'
 import PerfTable from './assets/Pred-Table.jpg'
 import cornData from './assets/cornData (2).json'
-import cornDataPred from './assets/rice_pred_json.json'
+import riceEarly from './assets/rice_pred_json.json'
+const riceDistricts = [...riceEarly].sort((a, b) => a.District_Name.localeCompare(b.District_Name))
 import cornPred from './assets/Corn-Pred.jpg'
 import TagLine from './assets/InnovateAchieveLead.jpg'
 import ep_wheat from './assets/ep_wheat.png'
@@ -121,10 +122,10 @@ function Early_prediction() {
     setData1(wheat1);
   }
   const call2 = () => {
-    const corn = cornDataPred.filter((cornDataPred) => {
+    const corn = riceEarly.filter((r) => {
       for (let index = 0; index < data2.length; index++) {
-        if (data2[index] == cornDataPred.District_ID) {
-          return cornDataPred;
+        if (data2[index] == r.District_ID) {
+          return r;
         }
 
       }
@@ -209,7 +210,7 @@ function Early_prediction() {
           >
             <MenuItem value="Wheat"
             >Wheat</MenuItem>
-            <MenuItem value="Corn">Rice</MenuItem>
+            <MenuItem value="Rice">Rice</MenuItem>
             {/* <MenuItem disabled value="Rice">Rice</MenuItem>
           <MenuItem disabled value="Soya">Soya</MenuItem> */}
           </Select>
@@ -247,7 +248,7 @@ function Early_prediction() {
           : <></>}
 
 
-        {data === "Corn" ? <>
+        {data === "Rice" ? <>
           <div className='wheat-data' style={{ display: 'flex', marginTop: '2rem', justifyContent: 'space-evenly', alignItems: 'center', width: '70vw' }}>
             <div className='metadata' style={{ textAlign: 'left' }}>
               <h1>Data & Model</h1>
@@ -358,7 +359,7 @@ function Early_prediction() {
           </FormControl>
           <Button className='search' onClick={() => { call(); seterror(null); }}> Predict Yield</Button>
           <Button className='search' onClick={() => { if (perf) { setperf(false) } else { setperf(true) } }}> Model Performance</Button>
-        </div></> : data === "Corn" ? <><div className='dropdown-2'>
+        </div></> : data === "Rice" ? <><div className='dropdown-2'>
           <FormControl sx={{ m: 1, width: 350 }}>
             <InputLabel id="demo-multiple-checkbox-label">District</InputLabel>
             <Select
@@ -380,10 +381,10 @@ function Early_prediction() {
                 },
                 PaperProps: { sx: { maxHeight: 200 } },
               }}
-            > {cornData.map((cornData) => (
-              <MenuItem key={cornData.Dist_ID} value={cornData.Dist_ID}>
-                <Checkbox checked={distName.indexOf(cornData.Dist_ID) > -1} />
-                <ListItemText primary={cornData.District_Name} />
+            > {riceDistricts.map((r) => (
+              <MenuItem key={r.District_ID} value={r.District_ID}>
+                <Checkbox checked={distName.indexOf(r.District_ID) > -1} />
+                <ListItemText primary={r.District_Name} />
               </MenuItem>
             ))}
 
@@ -451,7 +452,7 @@ function Early_prediction() {
             //     {data1.map((data1)=>{return(<><tr><td>{data1.DistrictID}</td><td>{data1.DistrictName}</td><td>{data1.Actual}</td><td>{data1.Predicted}</td></tr></>);})}
             //   </tbody>
             // </Table>
-            <>{data === "Corn" ? <><DataGrid className='table1' disableColumnMenu disableColumnSorting disableColumnResize columns={columns2.filter(element=> (element.field == 'District_Name' || element.field  == 'Actual' || element.field == data3))} rows={data1} getRowId={(row) => generateRandom()} ></DataGrid></> : <></>}
+            <>{data === "Rice" ? <><DataGrid className='table1' disableColumnMenu disableColumnSorting disableColumnResize columns={columns2.filter(element=> (element.field == 'District_Name' || element.field  == 'Actual' || element.field == data3))} rows={data1} getRowId={(row) => generateRandom()} ></DataGrid></> : <></>}
               {data === "Wheat" ? <><DataGrid className='table1' disableColumnMenu disableColumnSorting disableColumnResize columns={columns2.filter(element=> (element.field == 'District_Name' || element.field  == 'Actual' || element.field == data3))} rows={data1} getRowId={(row) => generateRandom()} ></DataGrid></> : <></>}</>
             :
             <h1 style={{ color: 'red' }}> {error} </h1>
@@ -468,7 +469,7 @@ function Early_prediction() {
           }> <img src={ep_wheat} alt="" style={{ width: '50vw' }} />
           </div></> : <></> : <></>}
 
-        {data === "Corn" ? perf ? <><h1> Model Performance</h1>
+        {data === "Rice" ? perf ? <><h1> Model Performance</h1>
           <div className='Model-perf' style={
             { display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100vw', marginTop: 20 }
           }> <img src={ep_rice} alt="" style={{ width: '50vw' }} />
