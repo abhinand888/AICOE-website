@@ -16,8 +16,12 @@ import Select from '@mui/material/Select'
 import Checkbox from '@mui/material/Checkbox'
 import wheatMH from './assets/multi_horizon_wheat.json'
 import mh_wheat from './assets/mh_wheat.png'
+import riceMH from './assets/multi_horizon_rice.json'
+import mh_rice from './assets/mh_rice.png'
 
 const wheatDistricts = [...wheatMH].sort((a, b) => a.District_Name.localeCompare(b.District_Name))
+const riceDistricts = [...riceMH].sort((a, b) => a.District_Name.localeCompare(b.District_Name))
+const CROP_DATA = { Wheat: wheatDistricts, Rice: riceDistricts }
 
 const HORIZONS = [
   { value: '2020', label: 'N (2020)' },
@@ -43,7 +47,7 @@ function MultiHorizonPrediction() {
     if (districts.length === 0) { setError('Please select at least one district.'); setRows([]); return }
     if (!horizon) { setError('Please select a prediction horizon.'); setRows([]); return }
     setError(null)
-    setRows(wheatDistricts
+    setRows((CROP_DATA[crop] || [])
       .filter((r) => districts.includes(r.District_ID))
       .map((r) => ({
         id: r.District_ID,
@@ -73,6 +77,7 @@ function MultiHorizonPrediction() {
             input={<OutlinedInput label='Crop Name' />}
           >
             <MenuItem value='Wheat'>Wheat</MenuItem>
+            <MenuItem value='Rice'>Rice</MenuItem>
           </Select>
         </FormControl>
 
@@ -99,7 +104,34 @@ function MultiHorizonPrediction() {
             </div>
             <iframe className='Map' title='Wheat Producing Districts' aria-label='Map' id='datawrapper-chart-yFKAB' src='https://datawrapper.dwcdn.net/yFKAB/1/' scrolling='no' frameBorder='0'></iframe>
           </div>
+        </> : <></>}
 
+        {crop === 'Rice' ? <>
+          <div className='wheat-data' style={{ display: 'flex', marginTop: '2rem', justifyContent: 'space-evenly', alignItems: 'center', width: '70vw' }}>
+            <div className='metadata' style={{ textAlign: 'left' }}>
+              <h1>Data & Model</h1>
+              <Table className='table' striped bordered hover>
+                <tbody>
+                  <tr><td>Satellite Used: </td><td>Landsat-8</td></tr>
+                  <tr><td>Data Modality: </td><td>Histogram time series + soil + weather</td></tr>
+                  <tr><td>Model: </td><td>EYNet (cross-attention, contrastive learning)</td></tr>
+                  <tr><td>Training data: </td><td>2014-2019</td></tr>
+                  <tr><td>Prediction for :</td><td>2020 (N), 2021 (N+1), 2022 (N+2), 2023 (N+3)</td></tr>
+                  <tr><td>No. of districts: </td><td>24</td></tr>
+                  <tr><td>Unit: </td><td>Bu/ac</td></tr>
+                  <tr><td colSpan={2}><b>RMSE</b></td></tr>
+                  <tr><td>N (2020) : </td><td>4.825</td></tr>
+                  <tr><td>N+1 (2021) : </td><td>6.765</td></tr>
+                  <tr><td>N+2 (2022) : </td><td>6.523</td></tr>
+                  <tr><td>N+3 (2023) : </td><td>9.060</td></tr>
+                </tbody>
+              </Table>
+            </div>
+            <iframe className='Map' title='Rice Producing Districts' aria-label='Map' id='datawrapper-chart-TumWF' src='https://datawrapper.dwcdn.net/TumWF/1/' scrolling='no' frameBorder='0'></iframe>
+          </div>
+        </> : <></>}
+
+        {crop ? <>
           <div className='dropdown-2'>
             <FormControl sx={{ m: 1, width: 350 }}>
               <InputLabel>District</InputLabel>
@@ -111,7 +143,7 @@ function MultiHorizonPrediction() {
                 renderValue={(s) => `${s.length} district${s.length === 1 ? '' : 's'} selected`}
                 MenuProps={menuProps}
               >
-                {wheatDistricts.map((r) => (
+                {(CROP_DATA[crop] || []).map((r) => (
                   <MenuItem key={r.District_ID} value={r.District_ID}>
                     <Checkbox checked={districts.indexOf(r.District_ID) > -1} />
                     <ListItemText primary={r.District_Name} />
@@ -135,7 +167,7 @@ function MultiHorizonPrediction() {
 
       <div className='sec-2'>
         {error ? <h1 style={{ color: 'red' }}>{error}</h1> : <></>}
-        {crop === 'Wheat' && rows.length > 0 ? <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+        {crop && rows.length > 0 ? <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
          
           <DataGrid className='table1' disableColumnMenu disableColumnResize columns={columns} rows={rows} hideFooter={rows.length <= 100} />
         </div> : <></>}
@@ -146,6 +178,12 @@ function MultiHorizonPrediction() {
           <h1> Model Performance</h1>
           <div className='Model-perf' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100vw', marginTop: 20 }}>
             <img src={mh_wheat} alt='Multi horizon prediction for wheat: RMSE by horizon' style={{ width: '50vw' }} />
+          </div>
+        </> : <></>}
+        {crop === 'Rice' && perf ? <>
+          <h1> Model Performance</h1>
+          <div className='Model-perf' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100vw', marginTop: 20 }}>
+            <img src={mh_rice} alt='Multi horizon prediction for rice: RMSE by horizon' style={{ width: '50vw' }} />
           </div>
         </> : <></>}
       </div>
