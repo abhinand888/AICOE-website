@@ -38,6 +38,9 @@ import TagLine from './assets/InnovateAchieveLead.jpg'
 import ep_wheat from './assets/ep_wheat.png'
 import ep_rice from './assets/ep_rice.png'
 import ep_corn from './assets/ep_corn.png'
+import ep_soy from './assets/ep_soy.png'
+import soyEarly from './assets/soy_early_predictions.json'
+const soyDistricts = [...soyEarly].sort((a, b) => a.District_Name.localeCompare(b.District_Name))
 import cornEarly from './assets/corn_early_predictions.json'
 const cornDistricts = [...cornEarly].sort((a, b) => a.District_Name.localeCompare(b.District_Name))
 import wheatDataPred from './assets/wheat_pred_json.json'
@@ -123,6 +126,9 @@ function Early_prediction() {
     })
     console.log(wheat1);
     setData1(wheat1);
+  }
+  const callSoy = () => {
+    setData1(soyEarly.filter((r) => data2.includes(r.District_ID)));
   }
   const callCorn = () => {
     setData1(cornEarly.filter((r) => data2.includes(r.District_ID)));
@@ -218,6 +224,7 @@ function Early_prediction() {
             >Wheat</MenuItem>
             <MenuItem value="Rice">Rice</MenuItem>
             <MenuItem value="Corn">Corn</MenuItem>
+            <MenuItem value="Soya">Soya</MenuItem>
             {/* <MenuItem disabled value="Rice">Rice</MenuItem>
           <MenuItem disabled value="Soya">Soya</MenuItem> */}
           </Select>
@@ -310,6 +317,35 @@ function Early_prediction() {
             </div>
 
             <iframe className='Map' title="Corn Producing Districts" aria-label="Map" id="datawrapper-chart-0qze0" src="https://datawrapper.dwcdn.net/0qze0/1/" scrolling="no" frameBorder="0"></iframe>
+          </div>
+        </>
+          : <></>}
+
+        {data === "Soya" ? <>
+          <div className='wheat-data' style={{ display: 'flex', marginTop: '2rem', justifyContent: 'space-evenly', alignItems: 'center', width: '70vw' }}>
+            <div className='metadata' style={{ textAlign: 'left' }}>
+              <h1>Data & Model</h1>
+              <Table className='table' striped bordered hover>
+                <thead>
+
+                </thead>
+                <tbody>
+                  <tr><td>Satellite Used: </td><td>Sentinel-2</td></tr>
+                  <tr><td>Data Modality: </td><td>Histogram time series + soil + weather</td></tr>
+                  <tr><td>Model: </td><td>EYNet (cross-attention, contrastive learning)</td></tr>
+                  <tr><td>Training data: </td><td>2016-2022</td></tr>
+                  <tr><td>Prediction for :</td><td>2023</td></tr>
+                  <tr><td>No. of districts: </td><td>152</td></tr>
+                  <tr><td>Unit:  </td><td>Bu/ac</td></tr>
+                  <tr><td>RMSE (best case) : </td><td>7.525</td></tr>
+                  <tr><td>RMSE (Average±Stddev) : </td><td>7.584 ± 0.06</td></tr>
+                  <tr><td>MAE (best case): </td><td>4.575</td></tr>
+                  <tr><td>MAE (Average±Stddev) : </td><td>4.645 ± 0.07</td></tr>
+
+                </tbody></Table>
+            </div>
+
+            <iframe className='Map' title="Soy Producing Districts" aria-label="Map" id="datawrapper-chart-SylUS" src="https://datawrapper.dwcdn.net/SylUS/1/" scrolling="no" frameBorder="0"></iframe>
           </div>
         </>
           : <></>}
@@ -531,6 +567,76 @@ function Early_prediction() {
         </div>
           <Button className='search' onClick={() => { if (perf) { setperf(false) } else { setperf(true) } }}> Model Performance</Button>
         </>
+        : data === "Soya" ? <><div className='dropdown-2'>
+          <FormControl sx={{ m: 1, width: 350 }}>
+            <InputLabel id="demo-multiple-checkbox-label">District</InputLabel>
+            <Select
+              labelId="demo-multiple-checkbox-label"
+              id="demo-multiple-checkbox"
+              multiple
+              value={distName}
+              onChange={handleChange}
+              input={<OutlinedInput label="District Name" />}
+              renderValue={(selected) => `${selected.length} district${selected.length === 1 ? '' : 's'} selected`}
+              MenuProps={{
+                MenuListProps: {
+                  sx: {
+                    "li.MuiButtonBase-root": {
+                      display: "flex",
+                      flexDirection: "row",
+                    },
+                  },
+                },
+                PaperProps: { sx: { maxHeight: 200 } },
+              }}
+            > {soyDistricts.map((r) => (
+              <MenuItem key={r.District_ID} value={r.District_ID}>
+                <Checkbox checked={distName.indexOf(r.District_ID) > -1} />
+                <ListItemText primary={r.District_Name} />
+              </MenuItem>
+            ))}
+
+            </Select>
+
+          </FormControl>
+
+          <FormControl sx={{ m: 1, width: 180 }}>
+            <InputLabel id="demo-multiple-checkbox-label">Select week</InputLabel>
+            <Select
+              labelId="demo-multiple-checkbox-label"
+              id="demo-multiple-checkbox"
+              value={data3}
+              onChange={handleChangeWeek}
+              input={<OutlinedInput label="week Name" />}
+              
+              MenuProps={{
+                MenuListProps: {
+                  sx: {
+                    "li.MuiButtonBase-root": {
+                      display: "flex",
+                      flexDirection: "row",
+                    },
+                  },
+                },
+                PaperProps: { sx: { maxHeight: 200 } },
+              }}
+            > { }
+              {columnselect.map((columnselect) => (
+            <MenuItem key={columnselect.field} value={columnselect.field}>
+              
+              
+              <ListItemText primary={columnselect.field} />
+            </MenuItem>
+            
+              ))}
+            </Select>
+
+          </FormControl>
+
+          <Button className='search' onClick={() => { callSoy(); setIsLoading(false); seterror(null) }}> Predict Yield</Button>
+        </div>
+          <Button className='search' onClick={() => { if (perf) { setperf(false) } else { setperf(true) } }}> Model Performance</Button>
+        </>
           : <></>}
 
 
@@ -554,7 +660,7 @@ function Early_prediction() {
             //     {data1.map((data1)=>{return(<><tr><td>{data1.DistrictID}</td><td>{data1.DistrictName}</td><td>{data1.Actual}</td><td>{data1.Predicted}</td></tr></>);})}
             //   </tbody>
             // </Table>
-            <>{data === "Rice" || data === "Corn" ? <><DataGrid className='table1' disableColumnMenu disableColumnSorting disableColumnResize columns={columns2.filter(element=> (element.field == 'District_Name' || element.field  == 'Actual' || element.field == data3))} rows={data1} getRowId={(row) => generateRandom()} ></DataGrid></> : <></>}
+            <>{data === "Rice" || data === "Corn" || data === "Soya" ? <><DataGrid className='table1' disableColumnMenu disableColumnSorting disableColumnResize columns={columns2.filter(element=> (element.field == 'District_Name' || element.field  == 'Actual' || element.field == data3))} rows={data1} getRowId={(row) => generateRandom()} ></DataGrid></> : <></>}
               {data === "Wheat" ? <><DataGrid className='table1' disableColumnMenu disableColumnSorting disableColumnResize columns={columns2.filter(element=> (element.field == 'District_Name' || element.field  == 'Actual' || element.field == data3))} rows={data1} getRowId={(row) => generateRandom()} ></DataGrid></> : <></>}</>
             :
             <h1 style={{ color: 'red' }}> {error} </h1>
@@ -569,6 +675,12 @@ function Early_prediction() {
           <div className='Model-perf' style={
             { display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100vw', marginTop: 20 }
           }> <img src={ep_wheat} alt="" style={{ width: '50vw' }} />
+          </div></> : <></> : <></>}
+
+        {data === "Soya" ? perf ? <><h1> Model Performance</h1>
+          <div className='Model-perf' style={
+            { display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100vw', marginTop: 20 }
+          }> <img src={ep_soy} alt="Early prediction for soy: MAE by weeks before harvest" style={{ width: '50vw' }} />
           </div></> : <></> : <></>}
 
         {data === "Corn" ? perf ? <><h1> Model Performance</h1>
