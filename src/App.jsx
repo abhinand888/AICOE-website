@@ -34,9 +34,7 @@ import cornData from './assets/cornData (2).json'
 import cornDataPred from './assets/csvjson (5).json'
 import cornPred from './assets/Corn-Pred.jpg'
 import ricePred from './assets/rice_predictions.json'
-import ricePerf from './assets/rice_model_performance.png'
 import soyPred from './assets/soy_predictions.json'
-import soyPerf from './assets/soy_model_performance.png'
 import TagLine from './assets/InnovateAchieveLead.jpg'
 
 
@@ -403,7 +401,6 @@ function App() {
       </FormControl>
       <Button className='search' onClick={()=>{callRice();setIsLoading(false);seterror(null)}}> Predict Yield</Button>
       </div>
-      <Button className='search' onClick={()=>{if(perf){setperf(false)} else{setperf(true)} }}> Model Performance</Button>
       </>
 :data==="Soya"?<><div className='dropdown-2'>
     <FormControl sx={{ m: 1, width: 350 }}>
@@ -426,7 +423,6 @@ function App() {
       </FormControl>
       <Button className='search' onClick={()=>{callSoy();setIsLoading(false);seterror(null)}}> Predict Yield</Button>
       </div>
-      <Button className='search' onClick={()=>{if(perf){setperf(false)} else{setperf(true)} }}> Model Performance</Button>
       </>
       :<></>}
       
@@ -467,18 +463,6 @@ function App() {
       {display:'flex', justifyContent:'center', alignItems:'center', width:'100vw', marginTop:20}
     }> <img src={PerfTable} alt="" style={{width:'50vw'}} />
     <img src={PerfGraph} alt="" style={{width:'50vw'}} /> </div></>:<></>:<></>}
-
-    {data==="Soya" ? perf ?<><h1> Model Performance</h1>
-    <div className='Model-perf'  style={
-      {display:'flex', justifyContent:'center', alignItems:'center', width:'100vw', marginTop:20}
-    }> <img src={soyPerf} alt="Soy model performance: predicted vs actual yield and error distribution" style={{width:'70vw'}} />
-     </div></>:<></>:<></>}
-
-    {data==="Rice" ? perf ?<><h1> Model Performance</h1>
-    <div className='Model-perf'  style={
-      {display:'flex', justifyContent:'center', alignItems:'center', width:'100vw', marginTop:20}
-    }> <img src={ricePerf} alt="Rice model performance: predicted vs actual yield and error distribution" style={{width:'70vw'}} />
-     </div></>:<></>:<></>}
 
     {data==="Corn" ? perf ?<><h1> Model Performance</h1>
     <div className='Model-perf'  style={
