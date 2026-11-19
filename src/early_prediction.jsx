@@ -37,8 +37,6 @@ import cornPred from './assets/Corn-Pred.jpg'
 import TagLine from './assets/InnovateAchieveLead.jpg'
 import ep_wheat from './assets/ep_wheat.png'
 import ep_rice from './assets/ep_rice.png'
-import ep_corn from './assets/ep_corn.png'
-import ep_soy from './assets/ep_soy.png'
 import soyEarly from './assets/soy_early_predictions.json'
 const soyDistricts = [...soyEarly].sort((a, b) => a.District_Name.localeCompare(b.District_Name))
 import cornEarly from './assets/corn_early_predictions.json'
@@ -563,7 +561,6 @@ function Early_prediction() {
 
           <Button className='search' onClick={() => { callCorn(); setIsLoading(false); seterror(null) }}> Predict Yield</Button>
         </div>
-          <Button className='search' onClick={() => { if (perf) { setperf(false) } else { setperf(true) } }}> Model Performance</Button>
         </>
         : data === "Soya" ? <><div className='dropdown-2'>
           <FormControl sx={{ m: 1, width: 350 }}>
@@ -633,7 +630,6 @@ function Early_prediction() {
 
           <Button className='search' onClick={() => { callSoy(); setIsLoading(false); seterror(null) }}> Predict Yield</Button>
         </div>
-          <Button className='search' onClick={() => { if (perf) { setperf(false) } else { setperf(true) } }}> Model Performance</Button>
         </>
           : <></>}
 
@@ -673,18 +669,6 @@ function Early_prediction() {
           <div className='Model-perf' style={
             { display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100vw', marginTop: 20 }
           }> <img src={ep_wheat} alt="" style={{ width: '50vw' }} />
-          </div></> : <></> : <></>}
-
-        {data === "Soya" ? perf ? <><h1> Model Performance</h1>
-          <div className='Model-perf' style={
-            { display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100vw', marginTop: 20 }
-          }> <img src={ep_soy} alt="Early prediction for soy: MAE by weeks before harvest" style={{ width: '50vw' }} />
-          </div></> : <></> : <></>}
-
-        {data === "Corn" ? perf ? <><h1> Model Performance</h1>
-          <div className='Model-perf' style={
-            { display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100vw', marginTop: 20 }
-          }> <img src={ep_corn} alt="Early prediction for corn: MAE by weeks before harvest" style={{ width: '50vw' }} />
           </div></> : <></> : <></>}
 
         {data === "Rice" ? perf ? <><h1> Model Performance</h1>
